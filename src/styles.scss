@@ -1,4 +1,4 @@
-.fast-note-sync-ribbon-icon{
+.quick-data-management-ribbon-icon{
     animation: rotate 2s linear infinite;
     /* 旋转动画：2秒一圈，线性，无限循环 */
 }
@@ -14,20 +14,20 @@
 }
 
 
-.fast-note-sync-settings-tag{
+.quick-data-management-settings-tag{
     .setting-item-name {
         color: var(--interactive-accent);
     }
 }
 
-.fast-note-sync-settings-support {
+.quick-data-management-settings-support {
     .ko-fi-logo {
         height: 36px !important;
         border: 0px !important;
     }
 }
 
-.fast-note-sync-settings-debug {
+.quick-data-management-settings-debug {
     margin: var(--size-4-2);
     text-align: center;
     button {
@@ -35,7 +35,7 @@
     }
 }
 
-.fast-note-sync-settings {
+.quick-data-management-settings {
     padding: 0.75em 0;
     border-top: 1px solid var(--background-modifier-border);
 

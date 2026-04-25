@@ -1,6 +1,6 @@
 {
-  "name": "Fast Note Sync",
-  "version": "0.6.33",
+  "name": "Quick Data Management",
+  "version": "0.6.34",
   "description": "Privately deployable real-time multi-device note synchronization, supporting desktop and mobile devices.",
   "main": "main.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "ver": "node ./scripts/update-version.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "zoudeying",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.19.12",

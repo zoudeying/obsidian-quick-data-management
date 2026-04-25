@@ -84,13 +84,17 @@ export class SettingTab extends PluginSettingTab {
     new Setting(set)
       .setName("| " + $("远端"))
       .setHeading()
-      .setClass("fast-note-sync-settings-tag")
+      .setClass("quick-data-management-settings-tag")
 
     const apiSet = set.createDiv()
-    apiSet.addClass("fast-note-sync-settings")
+    apiSet.addClass("quick-data-management-settings")
 
-    this.root = createRoot(apiSet)
-    this.root.render(<SettingsView plugin={this.plugin} />)
+    try {
+      this.root = createRoot(apiSet)
+      this.root.render(<SettingsView plugin={this.plugin} />)
+    } catch (e) {
+      console.error("Quick Data Management: Failed to render settings view", e)
+    }
 
     new Setting(set)
       .setName($("远端服务地址"))
@@ -140,18 +144,18 @@ export class SettingTab extends PluginSettingTab {
     new Setting(set)
       .setName("| " + $("支持"))
       .setHeading()
-      .setClass("fast-note-sync-settings-tag")
+      .setClass("quick-data-management-settings-tag")
     new Setting(set)
       .setName($("捐赠"))
       .setDesc($("如果您喜欢这个插件，请考虑捐赠以支持继续开发。"))
-      .setClass("fast-note-sync-settings-support")
-      .settingEl.createEl("a", { href: "https://ko-fi.com/haierkeys" })
+      .setClass("quick-data-management-settings-support")
+      .settingEl.createEl("a", { href: "https://ko-fi.com/zoudeying" })
       .createEl("img", {
         attr: { src: KofiImage, height: "36", border: "0", alt: "Buy me a coffee at ko-fi.com", class: "ko-fi-logo" },
       })
 
     const debugDiv = set.createDiv()
-    debugDiv.addClass("fast-note-sync-settings-debug")
+    debugDiv.addClass("quick-data-management-settings-debug")
 
     const debugButton = debugDiv.createEl("button")
     debugButton.setText($("复制 Debug 信息"))

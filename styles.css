@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.fast-note-sync-ribbon-icon {
+.quick-data-management-ribbon-icon {
   animation: rotate 2s linear infinite;
   /* 旋转动画：2秒一圈，线性，无限循环 */
 }
@@ -12,71 +12,71 @@
     transform: rotate(-360deg);
   }
 }
-.fast-note-sync-settings-tag .setting-item-name {
+.quick-data-management-settings-tag .setting-item-name {
   color: var(--interactive-accent);
 }
 
-.fast-note-sync-settings-support .ko-fi-logo {
+.quick-data-management-settings-support .ko-fi-logo {
   height: 36px !important;
   border: 0px !important;
 }
 
-.fast-note-sync-settings-debug {
+.quick-data-management-settings-debug {
   margin: var(--size-4-2);
   text-align: center;
 }
-.fast-note-sync-settings-debug button {
+.quick-data-management-settings-debug button {
   margin: var(--size-4-2);
 }
 
-.fast-note-sync-settings {
+.quick-data-management-settings {
   padding: 0.75em 0;
   border-top: 1px solid var(--background-modifier-border);
 }
-.fast-note-sync-settings table {
+.quick-data-management-settings table {
   width: 100%;
   border: 1px solid var(--background-modifier-border);
   margin-bottom: 20px;
 }
-.fast-note-sync-settings table a {
+.quick-data-management-settings table a {
   color: var(--color-blue);
   text-decoration: none;
 }
-.fast-note-sync-settings table a:hover {
+.quick-data-management-settings table a:hover {
   text-decoration: underline;
 }
-.fast-note-sync-settings table th, .fast-note-sync-settings table td {
+.quick-data-management-settings table th, .quick-data-management-settings table td {
   border: 0 !important;
 }
-.fast-note-sync-settings table th {
+.quick-data-management-settings table th {
   text-align: center;
   padding: 8px 10px;
   font-size: var(--font-ui-smaller);
   background-color: var(--background-secondary);
 }
-.fast-note-sync-settings table .no-columns-added {
+.quick-data-management-settings table .no-columns-added {
   padding: 15px;
   text-align: center;
   background-color: var(--background-secondary);
 }
-.fast-note-sync-settings table .no-columns-added p {
+.quick-data-management-settings table .no-columns-added p {
   margin: 4px;
   font-size: 10px;
 }
-.fast-note-sync-settings table thead {
+.quick-data-management-settings table thead {
   border-bottom: 1px solid var(--color-base-40) !important;
 }
-.fast-note-sync-settings table tbody tr {
+.quick-data-management-settings table tbody tr {
   background-color: var(--background-secondary);
 }
-.fast-note-sync-settings table tbody tr:nth-child(odd) {
+.quick-data-management-settings table tbody tr:nth-child(odd) {
   background-color: var(--background-secondary-alt);
 }
-.fast-note-sync-settings table tbody td {
+.quick-data-management-settings table tbody td {
   padding: 4px 8px;
   font-size: var(--font-ui-small);
 }
-.fast-note-sync-settings table tfoot td {
+.quick-data-management-settings table tfoot td {
   padding: 8px 10px;
 }
 

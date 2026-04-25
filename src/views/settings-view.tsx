@@ -78,7 +78,7 @@ export const SettingsView = ({ plugin }: { plugin: FastSync }) => {
         </div>
       </div>
       <div>
-        <table className="fast-note-sync-settings-openapi">
+        <table className="quick-data-management-settings-openapi">
           <thead>
             <tr>
               <th>{$("方式")}</th>
@@ -91,7 +91,7 @@ export const SettingsView = ({ plugin }: { plugin: FastSync }) => {
               <td>{$("私有服务搭建")}</td>
               <td>{$("速度好, 自由配置, 无隐私风险")}</td>
               <td>
-                <a href="https://github.com/haierkeys/obsidian-fast-note-sync-service">https://github.com/haierkeys/obsidian-fast-note-sync-service</a>
+                <a href="https://github.com/haierkeys/obsidian-quick-data-management-service">https://github.com/haierkeys/obsidian-quick-data-management-service</a>
               </td>
             </tr>
 

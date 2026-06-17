@@ -1,7 +1,7 @@
 {
-  "id": "fast-note-sync",
+  "id": "obsidian-quick-data-management",
   "name": "Quick Data Management",
-  "version": "0.6.35",
+  "version": "0.6.36",
   "minAppVersion": "1.6.5",
   "description": "Privately deployable real-time multi-device note synchronization, supporting desktop and mobile devices.",
   "author": "zoudeying",

@@ -410,7 +410,7 @@ export default class FastSync extends Plugin {
 
 
     // 注册协议处理器 (核心功能)
-    const ssoAction = "fast-note-sync/sso";
+    const ssoAction = `${this.manifest.id}/sso`;
     try {
       this.registerObsidianProtocolHandler(ssoAction, async (data: Record<string, string>) => {
         if (data?.pushApi) {

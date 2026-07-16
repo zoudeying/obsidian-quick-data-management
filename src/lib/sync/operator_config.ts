@@ -752,12 +752,12 @@ export const configReload = async function (path: string, plugin: FastSync, even
                         plugin.configManager.enabledPlugins = new Set(newP)
                     }
                     for (const id of toE) {
-                        if (id != "hot-reload" && id != "fast-note-sync") {
+                        if (id != "hot-reload" && id != plugin.manifest.id) {
                             pluginsToReload.add(id)
                         }
                     }
                     for (const id of toD) {
-                        if (id != "hot-reload" && id != "fast-note-sync") await app.plugins.disablePlugin(id)
+                        if (id != "hot-reload" && id != plugin.manifest.id) await app.plugins.disablePlugin(id)
                     }
                 } catch { /* ignore */ }
             } else if (p === `${configDir}/hotkeys.json`) {
@@ -778,7 +778,7 @@ export const configReload = async function (path: string, plugin: FastSync, even
         // 将 fast-note-sync 移到最后处理，确保其他插件先重载
         // Process fast-note-sync last to ensure other plugins reload first
         const sortedPlugins = Array.from(pluginsToReload);
-        const selfId = "fast-note-sync";
+        const selfId = plugin.manifest.id;
         if (sortedPlugins.includes(selfId)) {
             const index = sortedPlugins.indexOf(selfId);
             sortedPlugins.splice(index, 1);

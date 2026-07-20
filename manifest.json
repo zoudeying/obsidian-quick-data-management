@@ -1,7 +1,7 @@
 {
   "id": "obsidian-quick-data-management",
   "name": "Quick Data Management",
-  "version": "2.3.5",
+  "version": "2.3.6",
   "minAppVersion": "1.8.7",
   "description": "Real-time sync of your vaults across server, mobile, and web; shareable with anyone; supports REST and MCP integrations to build your personal AI knowledge base.",
   "author": "zoudeying",

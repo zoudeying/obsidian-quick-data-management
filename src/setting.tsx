@@ -242,12 +242,13 @@ export class SettingTab extends PluginSettingTab {
     // 记录当前的滚动位置 / Record current scroll position
     const savedScrollTop = set.scrollTop
 
-    // 1. 初始化基础布局结构 (仅在首次或容器被清空时)
+    // 1. 初始化基础布局结构 (仅在首次、容器被清空或 Header 不完整时)
     const headerEl = set.querySelector(".fns-setting-tab-header") as HTMLElement
     const hasSearch = set.querySelector(".fns-setting-search-container")
     this.contentEl = set.querySelector(".fns-setting-tab-content")
+    const hasAllTabs = headerEl && headerEl.querySelectorAll(".fns-setting-tab-item").length === 7
 
-    if (!headerEl || !hasSearch || !this.contentEl) {
+    if (!headerEl || !hasSearch || !this.contentEl || !hasAllTabs) {
       set.empty()
       this.unmountRoots()
       this.renderSearch(set)

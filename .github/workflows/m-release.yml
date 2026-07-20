@@ -24,7 +24,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.actor == 'haierkeys'
     env:
       CNB_TOKEN: ${{ secrets.CNB_TOKEN }}
 
@@ -84,7 +83,7 @@ jobs:
           pnpm install
           pnpm run build
           # Prepare assets
-          PKG_NAME="fast-note-sync"
+          PKG_NAME="obsidian-quick-data-management"
           mkdir -p ${PKG_NAME}
           cp main.js manifest.json styles.css ${PKG_NAME}
           zip -r ${PKG_NAME}-v${{ steps.version.outputs.tag }}.zip ${PKG_NAME}
@@ -106,7 +105,7 @@ jobs:
             manifest.json
             styles.css
             # changelog.txt
-            fast-note-sync-v${{ steps.version.outputs.tag }}.zip
+            obsidian-quick-data-management-v${{ steps.version.outputs.tag }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

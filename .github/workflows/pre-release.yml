@@ -3,10 +3,8 @@ name: Pre-release Build
 # 触发条件配置
 on:
   push:
-    branches-ignore:
-      - "master" # 明确忽略 master，由 release.yml 处理
-    paths:
-      - "manifest.json"
+    branches:
+      - "bleeding"
 
 # 权限配置
 permissions:

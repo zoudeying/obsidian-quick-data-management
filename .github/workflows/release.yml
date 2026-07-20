@@ -3,11 +3,11 @@ name: Build plugin
 # 触发条件配置
 on:
   push:
-    # 针对 master 分支的普通提交也触发
     branches:
       - "master"
-    paths:
-      - "manifest.json"
+      - "bleeding"
+    tags:
+      - "*"
 # 权限配置：允许脚本写入仓库内容并生成构建证明
 permissions:
   contents: write

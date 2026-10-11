@@ -3,10 +3,8 @@ name: Pre-release Build
 # 触发条件配置
 on:
   push:
-    branches-ignore:
-      - "master" # 明确忽略 master，由 release.yml 处理
-    paths:
-      - "manifest.json"
+    branches:
+      - "bleeding"
 
 # 权限配置
 permissions:
@@ -19,7 +17,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.actor == 'haierkeys'
+    env:
+      CNB_TOKEN: ${{ secrets.CNB_TOKEN }}
 
     steps:
       - uses: actions/checkout@v6
@@ -105,9 +104,9 @@ jobs:
         run: |
           pnpm install
           pnpm run build
-          # 使用 fast-note-sync 作为文件夹名，移除 obsidian- 前缀
-          PKG_NAME="fast-note-sync"
-          mkdir ${PKG_NAME}
+          # 使用 obsidian-quick-data-management 作为文件夹名
+          PKG_NAME="obsidian-quick-data-management"
+          mkdir -p ${PKG_NAME}
           cp main.js manifest.json styles.css ${PKG_NAME}
           zip -r ${PKG_NAME}-v${{ steps.check_version.outputs.release_tag }}.zip ${PKG_NAME}
 
@@ -131,7 +130,7 @@ jobs:
           target_commitish: ${{ github.sha }} # 明确指定在当前分支的 commit 上创建 tag
           overwrite_files: true
           files: |
-            fast-note-sync-v${{ steps.check_version.outputs.release_tag }}.zip
+            obsidian-quick-data-management-v${{ steps.check_version.outputs.release_tag }}.zip
             main.js
             manifest.json
             styles.css
@@ -140,10 +139,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push Tag to CNB
-        if: steps.check_version.outputs.should_release == 'true'
+        if: steps.check_version.outputs.should_release == 'true' && env.CNB_TOKEN != ''
         env:
           CNB_TOKEN: ${{ secrets.CNB_TOKEN }}
-          CNB_REPO: haierkeys/obsidian-fast-note-sync
+          CNB_REPO: zoudeying/obsidian-quick-data-management
           RELEASE_TAG: ${{ steps.check_version.outputs.release_tag }}-alpha
         run: |
           git tag "${RELEASE_TAG}" || true
@@ -151,13 +150,13 @@ jobs:
           git push cnb "${RELEASE_TAG}" --force
 
       - name: Create CNB Release and Upload Assets
-        if: steps.check_version.outputs.should_release == 'true'
+        if: steps.check_version.outputs.should_release == 'true' && env.CNB_TOKEN != ''
         env:
           CNB_TOKEN: ${{ secrets.CNB_TOKEN }}
-          CNB_REPO: haierkeys/obsidian-fast-note-sync
+          CNB_REPO: zoudeying/obsidian-quick-data-management
           RELEASE_TAG: ${{ steps.check_version.outputs.release_tag }}-alpha
           RELEASE_BODY: ${{ steps.prepare.outputs.commit_msg }}
-          ZIP_FILE: fast-note-sync-v${{ steps.check_version.outputs.release_tag }}.zip
+          ZIP_FILE: obsidian-quick-data-management-v${{ steps.check_version.outputs.release_tag }}.zip
         run: |
           set -e
           echo "::group::Creating CNB Release: ${RELEASE_TAG}"

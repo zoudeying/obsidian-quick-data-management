@@ -124,7 +124,7 @@ const AboutView = ({ plugin, type, closeModal }: { plugin: FastSync; type: 'plug
             <div className="fns-version-section">
                 {type === 'plugin' && (
                     <VersionItem
-                        title="Fast Note Sync For Obsidian"
+                        title="Quick Data Management For Obsidian"
                         isPlugin={true}
                         current={pluginCurrent}
                         latest={pluginIsNew ? pluginNew : pluginCurrent}
@@ -141,7 +141,7 @@ const AboutView = ({ plugin, type, closeModal }: { plugin: FastSync; type: 'plug
 
                 {type === 'server' && (
                     <VersionItem
-                        title="Fast Note Sync Service"
+                        title="Quick Data Management Service"
                         isPlugin={false}
                         current={serverCurrent || "0.0.0"}
                         latest={serverIsNew ? serverNew : serverCurrent}

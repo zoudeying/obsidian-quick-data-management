@@ -242,12 +242,13 @@ export class SettingTab extends PluginSettingTab {
     // 记录当前的滚动位置 / Record current scroll position
     const savedScrollTop = set.scrollTop
 
-    // 1. 初始化基础布局结构 (仅在首次或容器被清空时)
+    // 1. 初始化基础布局结构 (仅在首次、容器被清空或 Header 不完整时)
     const headerEl = set.querySelector(".fns-setting-tab-header") as HTMLElement
     const hasSearch = set.querySelector(".fns-setting-search-container")
     this.contentEl = set.querySelector(".fns-setting-tab-content")
+    const hasAllTabs = headerEl && headerEl.querySelectorAll(".fns-setting-tab-item").length === 7
 
-    if (!headerEl || !hasSearch || !this.contentEl) {
+    if (!headerEl || !hasSearch || !this.contentEl || !hasAllTabs) {
       set.empty()
       this.unmountRoots()
       this.renderSearch(set)
@@ -536,7 +537,7 @@ export class SettingTab extends PluginSettingTab {
     )
     this.setDescWithBreaks(set.lastElementChild as HTMLElement, $("setting.debug.update_source_desc"))
 
-    new Setting(set).setName($("setting.support.title")).setHeading().setClass("fast-note-sync-settings-tag")
+    new Setting(set).setName($("setting.support.title")).setHeading().setClass("fns-settings-tag")
 
     const supportSet = set.createDiv()
     const root = createRoot(supportSet)
@@ -687,7 +688,7 @@ export class SettingTab extends PluginSettingTab {
     const info = debugItem.createDiv("setting-item-info")
     const desc = info.createDiv("setting-item-description")
 
-    const debugDiv = desc.createDiv("fast-note-sync-settings-debug")
+    const debugDiv = desc.createDiv("fns-settings-debug")
 
     const debugButton = debugDiv.createEl("button")
     debugButton.setText($("setting.support.debug_copy"))
@@ -696,7 +697,7 @@ export class SettingTab extends PluginSettingTab {
         await navigator.clipboard.writeText(this.getDebugInfo())
         showSyncNotice($("setting.support.debug_desc"))
       } catch (e) {
-        console.error("[fast-note-sync] copy debug info failed:", e)
+        console.error("[quick-data-management] copy debug info failed:", e)
         // TODO(i18n): replace with localized key, e.g. $("setting.support.debug_copy_failed")
         showSyncNotice("Failed to copy debug info.")
       }
@@ -710,7 +711,7 @@ export class SettingTab extends PluginSettingTab {
           await navigator.clipboard.writeText(this.getDebugInfo())
           showSyncNotice($("setting.support.debug_desc"))
         } catch (e) {
-          console.error("[fast-note-sync] copy debug info failed:", e)
+          console.error("[quick-data-management] copy debug info failed:", e)
           // TODO(i18n): replace with localized key, e.g. $("setting.support.debug_copy_failed")
           showSyncNotice("Failed to copy debug info.")
         }
@@ -719,7 +720,7 @@ export class SettingTab extends PluginSettingTab {
           $("ui.title.notice"),
           $("setting.support.issue_notice"),
           () => {
-            window.open("https://github.com/haierkeys/obsidian-fast-note-sync/issues", "_blank")
+            window.open("https://github.com/zoudeying/obsidian-quick-data-management/issues", "_blank")
           },
           $("ui.button.goto_feedback"),
           $("ui.button.cancel"),
@@ -730,13 +731,7 @@ export class SettingTab extends PluginSettingTab {
       const featureButton = debugDiv.createEl("button")
       featureButton.setText($("setting.support.feature"))
       featureButton.onclick = () => {
-        window.open("https://github.com/haierkeys/obsidian-fast-note-sync/issues", "_blank")
-      }
-
-      const telegramButton = debugDiv.createEl("button")
-      telegramButton.setText($("setting.support.telegram"))
-      telegramButton.onclick = () => {
-        window.open("https://t.me/obsidian_users", "_blank")
+        window.open("https://github.com/zoudeying/obsidian-quick-data-management/issues", "_blank")
       }
 
       const logViewButton = debugDiv.createEl("button")
@@ -983,11 +978,11 @@ export class SettingTab extends PluginSettingTab {
    * Download, unzip and overwrite install a specific version of the plugin, and safely hot-reload the plugin upon completion
    */
   private async startVersionInstall(inputVersion: string, btn: HTMLButtonElement) {
-    dump("[fast-note-sync] startVersionInstall called with input:", inputVersion);
+    dump("[quick-data-management] startVersionInstall called with input:", inputVersion);
     let latest = inputVersion.trim();
     if (!latest) {
       showSyncNotice($("setting.debug.version_install_empty") || "请输入要安装的版本号");
-      dump("[fast-note-sync] version input is empty");
+      dump("[quick-data-management] version input is empty");
       return;
     }
 
@@ -995,68 +990,67 @@ export class SettingTab extends PluginSettingTab {
     if (latest.startsWith("v") || latest.startsWith("V")) {
       latest = latest.substring(1);
     }
-    dump("[fast-note-sync] sanitized version input:", latest);
+    dump("[quick-data-management] sanitized version input:", latest);
 
     // 2. 严格的 x.x.x 格式正则表达式校验 / Strict regex validation for x.x.x format
     const versionRegex = /^\d+\.\d+\.\d+$/;
     if (!versionRegex.test(latest)) {
       showSyncNotice($("setting.debug.version_install_invalid") || "版本号格式错误，必须为 x.x.x 格式（例如: 2.0.12）");
-      dump("[fast-note-sync] version format check failed:", latest);
+      dump("[quick-data-management] version format check failed:", latest);
       return;
     }
 
     const tag = "v" + latest;
     const confirmMsg = ($("setting.debug.version_install_confirm") || "确认要从更新源下载并覆盖安装版本为 ${version} 的插件吗？").replace("${version}", tag);
 
-    dump("[fast-note-sync] opening ConfirmModal for tag:", tag);
+    dump("[quick-data-management] opening ConfirmModal for tag:", tag);
     new ConfirmModal(
       this.app,
       $("ui.title.notice"),
       confirmMsg,
       () => {
         void (async () => {
-          dump("[fast-note-sync] ConfirmModal confirmed. Disabling button...");
+          dump("[quick-data-management] ConfirmModal confirmed. Disabling button...");
 
           btn.disabled = true;
           const originalText = btn.textContent || "";
-          dump("[fast-note-sync] original button text:", originalText);
+          dump("[quick-data-management] original button text:", originalText);
           btn.textContent = $("setting.debug.version_installing") || "正在安装...";
 
           try {
             const source = this.plugin.settings.updateSource || "github";
-            const zipFileName = `fast-note-sync-v${latest}.zip`;
+            const zipFileName = `obsidian-quick-data-management-v${latest}.zip`;
             const pluginDir = getPluginDir(this.plugin);
 
             let url = "";
             if (source === "github") {
-              url = `https://github.com/haierkeys/obsidian-fast-note-sync/releases/download/${latest}/${zipFileName}`;
+              url = `https://github.com/zoudeying/obsidian-quick-data-management/releases/download/${latest}/${zipFileName}`;
             } else {
-              // CNB 链接格式：releases/download/{version}/fast-note-sync-v{version}.zip
-              url = `https://cnb.cool/haierkeys/obsidian-fast-note-sync/-/releases/download/${latest}/${zipFileName}`;
+              url = `https://github.com/zoudeying/obsidian-quick-data-management/releases/download/${latest}/${zipFileName}`;
             }
 
-            dump(`[fast-note-sync] preparing download. Source: ${source}, Tag: ${tag}, Zip: ${zipFileName}, Dir: ${pluginDir}, URL: ${url}`);
+            dump(`[quick-data-management] preparing download. Source: ${source}, Tag: ${tag}, Zip: ${zipFileName}, Dir: ${pluginDir}, URL: ${url}`);
             showSyncNotice($("ui.version.downloading_file", { file: zipFileName }) || `正在下载 ${zipFileName}...`);
 
             // 3. 跨域下载 Zip 包 / Download zip with requestUrl to bypass CORS and gain speed
-            dump("[fast-note-sync] initiating requestUrl request to:", url);
+            dump("[quick-data-management] initiating requestUrl request to:", url);
             const response = await requestUrl({
               url: url,
               method: "GET",
             });
 
-            dump("[fast-note-sync] requestUrl returned. status:", response.status);
+            dump("[quick-data-management] requestUrl returned. status:", response.status);
             if (response.status !== 200) {
               throw new Error(`Failed to download ${zipFileName}: ${response.status}`);
             }
 
             showSyncNotice("下载成功，正在解密与提取文件...");
             const arrayBuffer = response.arrayBuffer;
-            dump("[fast-note-sync] arrayBuffer loaded. size in bytes:", arrayBuffer.byteLength);
+            dump("[quick-data-management] arrayBuffer loaded. size in bytes:", arrayBuffer.byteLength);
 
-            dump("[fast-note-sync] unzipping file contents with fflate...");
+            dump("[quick-data-management] unzipping file contents with fflate...");
             const unzipped: Record<string, Uint8Array> = unzipSync(new Uint8Array(arrayBuffer));
-            dump("[fast-note-sync] unzip completed. Total items in zip:", Object.keys(unzipped).length);
+            dump("[quick-data-management] unzip completed. Total items in zip:", Object.keys(unzipped).length);
 
             // 4. 自动检测根目录前缀（寻找 manifest.json 所在位置） / Automatically detect root prefix in zip
             let rootPrefix = "";
@@ -1065,10 +1059,10 @@ export class SettingTab extends PluginSettingTab {
             if (manifestFile) {
               rootPrefix = manifestFile.replace("manifest.json", "");
             }
-            dump("[fast-note-sync] zip root prefix detected:", rootPrefix || "(none)");
+            dump("[quick-data-management] zip root prefix detected:", rootPrefix || "(none)");
 
             const files = Object.entries(unzipped).filter(([name]) => !name.endsWith("/") && name.startsWith(rootPrefix));
-            dump("[fast-note-sync] total files filtered to extract:", files.length);
+            dump("[quick-data-management] total files filtered to extract:", files.length);
 
             // 5. 递归解压并覆盖写入 / Extract and overwrite recursively
             let count = 0;
@@ -1077,7 +1071,7 @@ export class SettingTab extends PluginSettingTab {
               if (!relativeFilename) continue;
 
               const path = `${pluginDir}/${relativeFilename}`;
-              dump(`[fast-note-sync] extracting file [${++count}/${files.length}]: ${relativeFilename} -> ${path}`);
+              dump(`[quick-data-management] extracting file [${++count}/${files.length}]: ${relativeFilename} -> ${path}`);
 
               // 确保父目录存在 / Ensure parent directory exists
               const pathParts = relativeFilename.split("/");
@@ -1086,20 +1080,20 @@ export class SettingTab extends PluginSettingTab {
                 for (let i = 0; i < pathParts.length - 1; i++) {
                   currentPath += `/${pathParts[i]}`;
                   if (!(await this.plugin.app.vault.adapter.exists(currentPath))) {
-                    dump(`[fast-note-sync] creating directory: ${currentPath}`);
+                    dump(`[quick-data-management] creating directory: ${currentPath}`);
                     await this.plugin.app.vault.adapter.mkdir(currentPath);
                   }
                 }
               }
 
-              dump(`[fast-note-sync] writing binary data to: ${path}`);
+              dump(`[quick-data-management] writing binary data to: ${path}`);
               await this.plugin.app.vault.adapter.writeBinary(path, content.buffer as ArrayBuffer);
             }
-            dump("[fast-note-sync] all files successfully extracted and written to filesystem.");
+            dump("[quick-data-management] all files successfully extracted and written to filesystem.");
 
             // 6. 热重载插件 / Hot reload plugin
             showSyncNotice($("setting.debug.version_installing_notice") || "正在安装指定版本插件...");
-            dump("[fast-note-sync] initiating plugin hot reload...");
+            dump("[quick-data-management] initiating plugin hot reload...");
 
             const app = this.app as AppWithInternal;
             const plugins = app.plugins;
@@ -1108,25 +1102,25 @@ export class SettingTab extends PluginSettingTab {
             }
 
             const id = this.plugin.manifest.id;
-            dump("[fast-note-sync] target plugin ID to reload:", id);
+            dump("[quick-data-management] target plugin ID to reload:", id);
 
             await new Promise((resolve) => window.setTimeout(resolve, 500));
 
-            dump("[fast-note-sync] disabling plugin...");
+            dump("[quick-data-management] disabling plugin...");
             await plugins.disablePlugin(id);
-            dump("[fast-note-sync] loading plugin manifests...");
+            dump("[quick-data-management] loading plugin manifests...");
             await plugins.loadManifests();
-            dump("[fast-note-sync] enabling plugin...");
+            dump("[quick-data-management] enabling plugin...");
             await plugins.enablePlugin(id);
 
-            dump("[fast-note-sync] hot reload finished successfully.");
+            dump("[quick-data-management] hot reload finished successfully.");
             showSyncNotice($("setting.debug.version_install_success") || "插件安装并重载成功", 10000);
           } catch (e) {
             const errorMsg = e instanceof Error ? e.message : String(e);
-            dumpError("[fast-note-sync] manual version install failed with error:", e);
+            dumpError("[quick-data-management] manual version install failed with error:", e);
             showSyncNotice(($("setting.debug.version_install_fail") || "插件安装失败") + ": " + errorMsg);
           } finally {
-            dump("[fast-note-sync] startVersionInstall execution completed. Restoring button state.");
+            dump("[quick-data-management] startVersionInstall execution completed. Restoring button state.");
             btn.disabled = false;
             btn.textContent = originalText || "开始安装";
           }
@@ -1271,10 +1265,10 @@ export class SettingTab extends PluginSettingTab {
   }
 
   private renderRemoteSettings(set: HTMLElement) {
-    new Setting(set).setDesc($("setting.remote.setup_desc")).setHeading().setClass("fast-note-sync-settings-tag-desc")
+    new Setting(set).setDesc($("setting.remote.setup_desc")).setHeading().setClass("fns-settings-tag-desc")
 
     const apiSet = set.createDiv()
-    apiSet.addClass("fast-note-sync-settings")
+    apiSet.addClass("fns-settings")
 
     const root = createRoot(apiSet)
     this.roots.push(root)
@@ -1402,7 +1396,7 @@ export class SettingTab extends PluginSettingTab {
   }
 
   private renderShortcutSettings(set: HTMLElement) {
-    new Setting(set).setDesc($("setting.shortcut.title_desc")).setHeading().setClass("fast-note-sync-settings-tag-desc")
+    new Setting(set).setDesc($("setting.shortcut.title_desc")).setHeading().setClass("fns-settings-tag-desc")
 
     const shortcutSetting = new Setting(set).setName($("setting.shortcut.open_log")).setDesc($("setting.shortcut.open_log_desc"))
 
@@ -1874,10 +1868,10 @@ export class SettingTab extends PluginSettingTab {
               await this.plugin.saveAndReloadServices()
             }
           })
-          .inputEl.addClass("fast-note-sync-remote-url-area"),
+          .inputEl.addClass("fns-remote-url-area"),
       )
       const remoteUrlSetting = set.lastElementChild as HTMLElement
-      remoteUrlSetting.addClass("fast-note-sync-remote-url-setting")
+      remoteUrlSetting.addClass("fns-remote-url-setting")
       this.setDescWithBreaks(remoteUrlSetting, $("setting.cloud.remote_source_desc"))
 
       new Setting(set).setName($("setting.cloud.delete_after_upload")).setClass("fns-setting-item-checkbox").addToggle((toggle) =>

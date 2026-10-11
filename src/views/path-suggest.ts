@@ -70,7 +70,7 @@ export class PathSuggest extends AbstractInputSuggest<string> {
     try {
       await this.scanDirectory("", lowerQuery, suggestions);
     } catch (e) {
-      dumpError("FNS: PathSuggest scan error", e);
+      dumpError("[QuickDataManagement] PathSuggest scan error", e);
     }
 
     return Array.from(suggestions)

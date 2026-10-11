@@ -1,5 +1,6 @@
 @charset "UTF-8";
-.fast-note-sync-ribbon-icon {
+.fast-note-sync-ribbon-icon,
+.fns-ribbon-icon {
   animation: rotate 2s linear infinite;
   /* 旋转动画：2秒一圈，线性，无限循环 1 */
 }
@@ -137,14 +138,16 @@
   white-space: pre-wrap;
 }
 
-.fast-note-sync-settings-tag {
+.fast-note-sync-settings-tag,
+.fns-settings-tag {
   border-top: none;
   padding: 0;
   margin-bottom: 0;
   margin-top: 0;
   border-bottom: 1px solid var(--background-modifier-border-faint);
 }
-.fast-note-sync-settings-tag.setting-item-heading .setting-item-info .setting-item-name {
+.fast-note-sync-settings-tag.setting-item-heading .setting-item-info .setting-item-name,
+.fns-settings-tag.setting-item-heading .setting-item-info .setting-item-name {
   font-size: var(--font-ui-medium);
   font-weight: 600;
   color: var(--interactive-accent);
@@ -152,7 +155,8 @@
   align-items: center;
   letter-spacing: 0.5px;
 }
-.fast-note-sync-settings-tag.setting-item-heading .setting-item-info .setting-item-name::before {
+.fast-note-sync-settings-tag.setting-item-heading .setting-item-info .setting-item-name::before,
+.fns-settings-tag.setting-item-heading .setting-item-info .setting-item-name::before {
   content: "";
   display: inline-block;
   width: 4px;
@@ -163,7 +167,8 @@
   opacity: 0.8;
 }
 
-.fast-note-sync-settings-tag-desc {
+.fast-note-sync-settings-tag-desc,
+.fns-settings-tag-desc {
   border-top: none;
   background-color: var(--background-secondary-alt);
   border: 1px solid var(--background-modifier-border-faint);
@@ -175,7 +180,8 @@
   overflow: hidden;
   box-shadow: inset 0 0 10px rgb(var(--interactive-accent-rgb), 0.02);
 }
-.fast-note-sync-settings-tag-desc::before {
+.fast-note-sync-settings-tag-desc::before,
+.fns-settings-tag-desc::before {
   content: "";
   position: absolute;
   top: 0;
@@ -186,10 +192,12 @@
   opacity: 0.05;
   pointer-events: none;
 }
-.fast-note-sync-settings-tag-desc .setting-item-info {
+.fast-note-sync-settings-tag-desc .setting-item-info,
+.fns-settings-tag-desc .setting-item-info {
   margin: 0;
 }
-.fast-note-sync-settings-tag-desc .setting-item-description {
+.fast-note-sync-settings-tag-desc .setting-item-description,
+.fns-settings-tag-desc .setting-item-description {
   font-size: var(--font-ui-small);
   color: var(--text-normal);
   line-height: 1.7;
@@ -197,7 +205,8 @@
   align-items: flex-start;
   gap: 12px;
 }
-.fast-note-sync-settings-tag-desc .setting-item-description::before {
+.fast-note-sync-settings-tag-desc .setting-item-description::before,
+.fns-settings-tag-desc .setting-item-description::before {
   content: "✦";
   font-size: 16px;
   color: var(--interactive-accent);
@@ -285,15 +294,18 @@
   width: 100%;
 }
 
-.fast-note-sync-support-info {
+.fast-note-sync-support-info,
+.fns-support-info {
   margin: 1em 0;
 }
-.fast-note-sync-support-info ul {
+.fast-note-sync-support-info ul,
+.fns-support-info ul {
   margin: 0;
   padding-left: 1.5em;
 }
 
-.fast-note-sync-support-table {
+.fast-note-sync-support-table,
+.fns-support-table {
   width: 100%;
   border-collapse: collapse;
   margin: 1em 0;
@@ -302,25 +314,30 @@
   font-size: var(--font-ui-smaller);
 }
 .fast-note-sync-support-table th,
-.fast-note-sync-support-table td {
+.fast-note-sync-support-table td,
+.fns-support-table th,
+.fns-support-table td {
   border: 1px solid var(--background-modifier-border);
   padding: 10px;
   text-align: center;
   vertical-align: middle;
   font-size: var(--font-ui-smaller);
 }
-.fast-note-sync-support-table .support-separator {
+.fast-note-sync-support-table .support-separator,
+.fns-support-table .support-separator {
   width: 40px;
   color: var(--text-muted);
   font-size: var(--font-ui-smaller);
 }
-.fast-note-sync-support-table .ko-fi-logo-large {
+.fast-note-sync-support-table .ko-fi-logo-large,
+.fns-support-table .ko-fi-logo-large {
   width: 200px;
   height: auto;
   display: block;
   margin: 0 auto;
 }
-.fast-note-sync-support-table .wx-pay-logo-large {
+.fast-note-sync-support-table .wx-pay-logo-large,
+.fns-support-table .wx-pay-logo-large {
   width: 80px;
   height: auto;
   border-radius: 4px;
@@ -366,7 +383,8 @@
   opacity: 0.8;
 }
 
-.fast-note-sync-settings-debug {
+.fast-note-sync-settings-debug,
+.fns-settings-debug {
   margin-top: var(--size-4-2);
   display: flex;
   flex-wrap: wrap;
@@ -374,7 +392,8 @@
   gap: 8px;
   width: 100%;
 }
-.fast-note-sync-settings-debug button {
+.fast-note-sync-settings-debug button,
+.fns-settings-debug button {
   margin: 0;
   padding: 6px 14px;
   font-size: var(--font-ui-small);
@@ -383,88 +402,110 @@
   white-space: nowrap;
   /* 继承 Obsidian 默认背景/边框/圆角样式，不进行深度自定义 */
 }
-.fast-note-sync-settings-debug button:hover {
+.fast-note-sync-settings-debug button:hover,
+.fns-settings-debug button:hover {
   color: var(--text-normal);
 }
 
-.fast-note-sync-settings {
+.fast-note-sync-settings,
+.fns-settings {
   margin-top: 10px;
   padding: 0 0 0.75em;
 }
-.fast-note-sync-settings table {
+.fast-note-sync-settings table,
+.fns-settings table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
   border: 1px solid var(--background-modifier-border);
 }
-.fast-note-sync-settings table a {
+.fast-note-sync-settings table a,
+.fns-settings table a {
   color: var(--color-blue);
   text-decoration: none;
 }
-.fast-note-sync-settings table a:hover {
+.fast-note-sync-settings table a:hover,
+.fns-settings table a:hover {
   text-decoration: underline;
 }
 .fast-note-sync-settings table th,
-.fast-note-sync-settings table td {
+.fast-note-sync-settings table td,
+.fns-settings table th,
+.fns-settings table td {
   border: 1px solid var(--background-modifier-border);
   padding: 8px 10px;
 }
-.fast-note-sync-settings table th {
+.fast-note-sync-settings table th,
+.fns-settings table th {
   text-align: center;
   font-size: var(--font-ui-smaller);
   background-color: var(--background-secondary);
 }
-.fast-note-sync-settings table .no-columns-added {
+.fast-note-sync-settings table .no-columns-added,
+.fns-settings table .no-columns-added {
   padding: 15px;
   text-align: center;
   background-color: var(--background-secondary);
 }
-.fast-note-sync-settings table .no-columns-added p {
+.fast-note-sync-settings table .no-columns-added p,
+.fns-settings table .no-columns-added p {
   margin: 4px;
   font-size: 10px;
 }
-.fast-note-sync-settings table thead {
+.fast-note-sync-settings table thead,
+.fns-settings table thead {
   border-bottom: 2px solid var(--background-modifier-border);
 }
-.fast-note-sync-settings table tbody tr {
+.fast-note-sync-settings table tbody tr,
+.fns-settings table tbody tr {
   background-color: var(--background-secondary);
 }
-.fast-note-sync-settings table tbody tr:nth-child(odd) {
+.fast-note-sync-settings table tbody tr:nth-child(odd),
+.fns-settings table tbody tr:nth-child(odd) {
   background-color: var(--background-secondary-alt);
 }
-.fast-note-sync-settings table tbody td {
+.fast-note-sync-settings table tbody td,
+.fns-settings table tbody td {
   font-size: var(--font-ui-small);
 }
-.fast-note-sync-settings table tfoot td {
+.fast-note-sync-settings table tfoot td,
+.fns-settings table tfoot td {
   padding: 8px 10px;
 }
 
-.fast-note-sync-desc-table {
+.fast-note-sync-desc-table,
+.fns-desc-table {
   width: 100%;
   border-collapse: collapse;
   margin: 10px 0;
   border: 1px solid var(--background-modifier-border);
 }
 .fast-note-sync-desc-table th,
-.fast-note-sync-desc-table td {
+.fast-note-sync-desc-table td,
+.fns-desc-table th,
+.fns-desc-table td {
   border: 1px solid var(--background-modifier-border);
   padding: 6px 10px;
   text-align: left;
 }
-.fast-note-sync-desc-table th {
+.fast-note-sync-desc-table th,
+.fns-desc-table th {
   background-color: var(--background-secondary);
   font-weight: bold;
   font-size: var(--font-ui-smaller);
 }
-.fast-note-sync-desc-table td {
+.fast-note-sync-desc-table td,
+.fns-desc-table td {
   font-size: var(--font-ui-small);
   background-color: var(--background-primary);
 }
-.fast-note-sync-desc-table tbody tr:nth-child(even) td {
+.fast-note-sync-desc-table tbody tr:nth-child(even) td,
+.fns-desc-table tbody tr:nth-child(even) td {
   background-color: var(--background-secondary-alt);
 }
 
-.fast-note-sync-status-bar-progress {
+.fast-note-sync-status-bar-progress,
+.fns-status-bar-progress {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -486,7 +527,8 @@
   cursor: pointer;
 }
 
-.fast-note-sync-progress-bar {
+.fast-note-sync-progress-bar,
+.fns-progress-bar {
   width: 60px;
   min-width: 60px;
   flex-shrink: 0;
@@ -497,7 +539,10 @@
   overflow: hidden;
   display: block;
 }
-.fast-note-sync-progress-bar .fast-note-sync-progress-fill {
+.fast-note-sync-progress-bar .fast-note-sync-progress-fill,
+.fast-note-sync-progress-bar .fns-progress-fill,
+.fns-progress-bar .fast-note-sync-progress-fill,
+.fns-progress-bar .fns-progress-fill {
   display: block;
   height: 100%;
   background-color: var(--interactive-accent);
@@ -505,12 +550,14 @@
   transition: width 0.05s linear;
 }
 
-.fast-note-sync-progress-check {
+.fast-note-sync-progress-check,
+.fns-progress-check {
   display: flex;
   align-items: center;
   color: var(--text-success);
 }
-.fast-note-sync-progress-check svg {
+.fast-note-sync-progress-check svg,
+.fns-progress-check svg {
   width: 16px;
   height: 16px;
 }
@@ -576,14 +623,19 @@
 }
 
 /* 附件云预览远端源布局优化 */
-.fast-note-sync-remote-url-setting {
+.fast-note-sync-remote-url-setting,
+.fns-remote-url-setting {
   flex-direction: column;
   align-items: flex-start;
 }
-.fast-note-sync-remote-url-setting .setting-item-control {
+.fast-note-sync-remote-url-setting .setting-item-control,
+.fns-remote-url-setting .setting-item-control {
   width: 100%;
 }
-.fast-note-sync-remote-url-setting .setting-item-control textarea.fast-note-sync-remote-url-area {
+.fast-note-sync-remote-url-setting .setting-item-control textarea.fast-note-sync-remote-url-area,
+.fast-note-sync-remote-url-setting .setting-item-control textarea.fns-remote-url-area,
+.fns-remote-url-setting .setting-item-control textarea.fast-note-sync-remote-url-area,
+.fns-remote-url-setting .setting-item-control textarea.fns-remote-url-area {
   width: 100%;
   height: 60px;
   resize: vertical;
@@ -770,6 +822,17 @@
   font-family: var(--font-monospace);
   font-size: 12px;
   background: var(--background-secondary-alt);
+}
+.conflict-resolve-diff-wrap .conflict-diff-col .conflict-diff-content .conflict-diff-skipped {
+  padding: 16px 12px;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-family: var(--font-interface);
+  line-height: 1.6;
+  text-align: center;
+  border: 1px dashed var(--background-modifier-border);
+  border-radius: 6px;
+  margin: 8px 4px;
 }
 .conflict-resolve-diff-wrap .conflict-diff-col .conflict-diff-content .history-detail-line {
   display: flex;
@@ -2910,7 +2973,7 @@ body .suggestion-container {
     justify-content: center;
   }
 }
-/* --- Fast Note Sync Refactor Utilities --- */
+/* --- Quick Data Management Refactor Utilities --- */
 .fns-flex {
   display: flex;
 }
@@ -3303,7 +3366,8 @@ body .suggestion-container {
   min-width: 28px;
 }
 
-.fast-note-sync-progress-fill {
+.fast-note-sync-progress-fill,
+.fns-progress-fill {
   transition: width 0.3s ease;
 }
 

@@ -210,7 +210,7 @@ export const fileModify = async function (file: TAbstractFile, plugin: FastSync,
 
   if (isLargeBinarySyncRisk(file.stat.size, plugin)) {
     dump(`Skip file modify for large attachment (${describeBinarySyncLimit()} limit): ${file.path}`, file.stat.size)
-    notifyLargeFileSkipped(plugin, file.path, file.stat.size, `Fast Note Sync skipped large file: ${file.path}`)
+    notifyLargeFileSkipped(plugin, file.path, file.stat.size, `Skipped large file: ${file.path}`)
     return
   }
 
@@ -470,7 +470,7 @@ export const receiveFileUpload = async function (data: FileUploadMessage, plugin
   }
   if (isLargeBinarySyncRisk(file.stat.size, plugin)) {
     dump(`Skip file upload for large attachment (${describeBinarySyncLimit()} limit): ${data.path}`, file.stat.size)
-    notifyLargeFileSkipped(plugin, data.path, file.stat.size, `Fast Note Sync skipped large file upload: ${data.path}`)
+    notifyLargeFileSkipped(plugin, data.path, file.stat.size, `Skipped large file upload: ${data.path}`)
     plugin.recordSyncCompleted('file', data.pageIndex)
     return
   }
@@ -737,7 +737,7 @@ export const receiveFileSyncUpdate = async function (data: ReceiveFileSyncUpdate
   }
   if (isLargeBinarySyncRisk(data.size, plugin)) {
     dump(`Skip file download for large attachment (${describeBinarySyncLimit()} limit): ${data.path}`, data.size)
-    notifyLargeFileSkipped(plugin, data.path, data.size, `Fast Note Sync skipped large file download: ${data.path}`)
+    notifyLargeFileSkipped(plugin, data.path, data.size, `Skipped large file download: ${data.path}`)
     plugin.recordSyncCompleted('file', data.pageIndex);
     return
   }
@@ -859,7 +859,7 @@ export const receiveFileSyncDelete = async function (data: ReceivePathMessage, p
       }
     }
   }, { maxRetries: 5, retryInterval: 100 }).catch(e => {
-    dumpError(`[FastSync] Failed to receiveFileSyncDelete: ${normalizedPath}`, e);
+    dumpError(`[QuickDataManagement] Failed to receiveFileSyncDelete: ${normalizedPath}`, e);
     SyncLogManager.getInstance().addLog('receive', 'FileDelete', e instanceof Error ? e.message : String(e), 'error', data.path);
     plugin.fileSyncTasks.failed++
   });
@@ -924,7 +924,7 @@ export const receiveFileSyncMtime = async function (data: ReceiveMtimeMessage, p
       }
     }
   }, { maxRetries: 5, retryInterval: 100 }).catch(e => {
-    dumpError(`[FastSync] Failed to receiveFileSyncMtime: ${normalizedPath}`, e);
+    dumpError(`[QuickDataManagement] Failed to receiveFileSyncMtime: ${normalizedPath}`, e);
     if (!checkAndNotifyCaseConflict(e, data.path, plugin, 'FileMtime')) {
       SyncLogManager.getInstance().addLog('receive', 'FileMtime', e instanceof Error ? e.message : String(e), 'error', data.path);
     }
@@ -1316,7 +1316,7 @@ export const receiveFileSyncRename = async function (data: { oldPath: string; pa
       }
     }
   }, { maxRetries: 10, retryInterval: 100 }).catch(e => {
-    dumpError(`[FastSync] Failed to receiveFileSyncRename: ${normalizedOldPath} -> ${normalizedNewPath}`, e);
+    dumpError(`[QuickDataManagement] Failed to receiveFileSyncRename: ${normalizedOldPath} -> ${normalizedNewPath}`, e);
     if (!checkAndNotifyCaseConflict(e, data.path, plugin, 'FileRename')) {
       SyncLogManager.getInstance().addLog('receive', 'FileRename', e instanceof Error ? e.message : String(e), 'error', data.path);
     }

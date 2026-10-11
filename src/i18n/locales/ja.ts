@@ -2,7 +2,7 @@
 
 
 export default {
-  "fns.desc": "プライベートデプロイに対応し、マルチ端末でのノート、添付ファイル、設定のリアルタイム同期＆バックアッププラグイン。Mac、Windows、Android、iOS などのプラットフォームをサポートし、multi-language にも対応しています。",
+  "fns.desc": "ノート保管庫のデータを効率的に管理、バックアップ、インデックス化し、高速なローカルストレージと統合機能を提供します。",
 
   "setting.tab.general": "一般",
   "setting.tab.debug": "デバッグ",
@@ -27,13 +27,13 @@ export default {
   "setting.remote.user_account": "接続ユーザーアカウント",
   "setting.remote.loading_user_info": " (ユーザー情報を読み込み中...)",
   "setting.remote.setup_desc": "リモートサービスの構築と選択: 自分に合ったリモートサービスを選択してください",
-  "setting.remote.setup_table": "\n| 方法 | 詳細・参考 |\n| --- | --- |\n| プライベートサーバーの独自構築  |  速度が速く、自由に設定可能、プライバシーリスクなし、<a href='https://github.com/haierkeys/obsidian-fast-note-sync-service'>https://github.com/haierkeys/fast-note-sync-service</a> にアクセスして構築手順を参照 |",
+  "setting.remote.setup_table": "\n| 方法 | 詳細・参考 |\n| --- | --- |\n| プライベートサーバーの独自構築  |  速度が速く、自由に設定可能、プライバシーリスクなし。付属のサーバー側ドキュメントを参照して構築してください |",
   "setting.remote.paste_config": "サーバーの認証設定を貼り付け",
   "setting.remote.paste_success": "インターフェース設定情報が設定に貼り付けられました!",
   "setting.remote.no_config": "設定情報が検出されませんでした!",
   "setting.remote.api_url": "リモートサービスアドレス",
-  "setting.remote.api_url_desc": "FNS サービスのアドレスを入力",
-  "setting.remote.api_url_placeholder": "FNS サービスのアドレスを入力",
+  "setting.remote.api_url_desc": "リモートサービスのアドレスを入力",
+  "setting.remote.api_url_placeholder": "リモートサービスのアドレスを入力",
   "setting.remote.api_token": "リモート認証Token",
   "setting.remote.api_token_desc": "認証Tokenを入力",
   "setting.remote.api_token_placeholder": "API アクセストークンを入力してください",
@@ -148,7 +148,7 @@ export default {
   "setting.cloud.type_limit": "添付ファイルのクラウドプレビュータイプ制限",
   "setting.cloud.type_limit_desc": "有効にすると、画像/音声/動画/PDF のみがクラウドプレビュー機能を使用でき、その他の添付ファイルは通常通り同期されます。\n注意：無効にする場合は慎重に行ってください。この項目により、添付ファイルに関連するプラグインが機能しなくなる可能性があります。",
   "setting.cloud.remote_source": "添付ファイルのクラウドプレビュー - 前後接辞マッピングのリモートソース",
-  "setting.cloud.remote_source_desc": "この設定項目は、プレフィックス/サフィックスに一致する添付ファイルの遠端ソースを指定するために使用され、複数行のルールをサポートします。\n形式：<b>プレフィックス名@サフィックス名#遠端ソース</b>、\n<b>プレフィックス</b>は省略可能で、複数の<b>サフィックス名</b>は <b>$</b> で区切ります。プレフィックスとサフィックスの両方が一致しない場合は、デフォルトのFNSソースが使用され、遠端ソースは変数置換をサポートします。\n\n| 変数 | 説明 |\n| --- | --- |\n| {path} | ノート内の添付ファイルパス |\n| {vaultPath} | 添付ファイルに対応するヴァルトの相対パス |\n| {notePath} | その添付ファイルを含むノートのパス |\n| {attachmentFolderPath} | Obsidian のデフォルトの添付ファイル保存フォルダパス |\n| {vault} | ヴァルト名 |\n| {type} | 添付ファイルの種類 (image/video/audio/pdf/other) |\n例：<b>prefix@.jpg$.png#http://domain.com/{path}</b>\n注意：カスタム遠端ソースを使用する場合、クロスオリジンプレビュー（CORS）および必要な認証（必要な場合）をサポートしていることを確認してください。",
+  "setting.cloud.remote_source_desc": "この設定項目は、プレフィックス/サフィックスに一致する添付ファイルの遠端ソースを指定するために使用され、複数行のルールをサポートします。\n形式：<b>プレフィックス名@サフィックス名#遠端ソース</b>、\n<b>プレフィックス</b>は省略可能で、複数の<b>サフィックス名</b>は <b>$</b> で区切ります。プレフィックスとサフィックスの両方が一致しない場合は、デフォルトの遠端ソースが使用され、遠端ソースは変数置換をサポートします。\n\n| 変数 | 説明 |\n| --- | --- |\n| {path} | ノート内の添付ファイルパス |\n| {vaultPath} | 添付ファイルに対応するヴァルトの相対パス |\n| {notePath} | その添付ファイルを含むノートのパス |\n| {attachmentFolderPath} | Obsidian のデフォルトの添付ファイル保存フォルダパス |\n| {vault} | ヴァルト名 |\n| {type} | 添付ファイルの種類 (image/video/audio/pdf/other) |\n例：<b>prefix@.jpg$.png#http://domain.com/{path}</b>\n注意：カスタム遠端ソースを使用する場合、クロスオリジンプレビュー（CORS）および必要な認証（必要な場合）をサポートしていることを確認してください。",
   "setting.cloud.delete_after_upload": "添付ファイルのクラウドプレビュー - アップロード後に削除",
   "setting.cloud.delete_after_upload_desc": "添付ファイルが正常にアップロードされると、スペースを節約するためにローカルファイルが自動的に削除されます。\n（この設定には添付ファイルのクラウドプレビューを有効にする必要があります）\n注意：無効にする場合は慎重に行ってください。この項目により、添付ファイルに関連するプラグインが機能しなくなる可能性があります。",
   "setting.cloud.dynamic_attachment": "動的添付ファイルディレクトリ",
@@ -178,7 +178,7 @@ export default {
   "setting.support.range_3m": "3ヶ月以内",
   "setting.support.range_all": "全期間",
   "setting.support.empty": "サポート記録はありません",
-  "setting.support.thanks": "Fast Note Sync へのご支援ありがとうございます。このリストは不定期で更新されます。<br />コメントの他に、メッセージ本文に <b>推奨情報</b> や <b>Issue ID</b> を追記していただくと（例：#1234）、迅速なサポートが可能です。",
+  "setting.support.thanks": "Quick Data Management へのご支援ありがとうございます。このリストは不定期で更新されます。<br />コメントの他に、メッセージ本文に <b>推奨情報</b> や <b>Issue ID</b> を追記していただくと（例：#1234）、迅速なサポートが可能です。",
   "setting.support.loading": "読み込み中...",
   "setting.support.message_title": "サポーターからのメッセージ",
   "setting.support.message_label": "メッセージ内容：",
@@ -231,7 +231,7 @@ export default {
   "ui.history.load_failed": "読み込みに失敗しました。再試行してください。",
 
   // --- ui.menu ---
-  "ui.menu.ribbon_title": "FNS メニュー",
+  "ui.menu.ribbon_title": "データ管理",
   "ui.menu.default_sync": "デフォルト同期",
   "ui.menu.default_sync_desc": "上次同期以降の増分更新を確認します",
   "ui.menu.full_sync": "完全同期",
@@ -248,9 +248,9 @@ export default {
   "ui.menu.rebuild_hash": "ハッシュを再構築",
   "ui.menu.clear_cache": "同期キャッシュをクリア",
   "ui.menu.plugin": "プラグインバージョン",
-  "ui.menu.plugin_desc": "Fast Note Sync プラグインのバージョン番号",
+  "ui.menu.plugin_desc": "Quick Data Management プラグインのバージョン番号",
   "ui.menu.server": "サーバーバージョン",
-  "ui.menu.server_desc": "Fast Note Sync サーバーのバージョン番号",
+  "ui.menu.server_desc": "Quick Data Management サーバーのバージョン番号",
   "ui.menu.settings": "プラグイン設定",
   "setting.debug.clear_time_desc": "ローカル上のすべての種類の同期記録のタイムスタンプをクリアします。リモートデータには影響しません。次回同期時に完全な比較が行われます。",
   "setting.debug.clear_hash_only_desc": "ローカルのファイルハッシュマッピングのみをクリアし、即時再構築は行われません。次回同期時に再計算されます。",
@@ -569,5 +569,6 @@ export default {
   "ui.conflict.final_title": "競合解決コンテンツ",
   "ui.conflict.use_local": "ローカルを使用->",
   "ui.conflict.use_remote": "リモートを使用->",
+  "ui.conflict.diff_skipped": "ファイルサイズが大きいため、行ごとの差分比較をスキップしました。上のボタンをクリックしてローカル/リモートバージョンを選択するか、右側のエディタで直接編集してください。",
   "ui.log.action.NoteManualMergeConflict": "ノート内容の競合",
 };

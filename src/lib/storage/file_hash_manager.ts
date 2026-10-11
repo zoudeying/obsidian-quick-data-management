@@ -209,7 +209,7 @@ export class FileHashManager {
             // 单个文件哈希计算失败不应中断整个构建过程
             const msg = error instanceof Error ? error.message : String(error);
             dump(`FileHashManager: 计算哈希失败，跳过文件: ${file.path}`, error);
-            console.warn(`[FastNoteSync] 跳过文件 ${file.path}: ${msg}`);
+            console.warn(`[QuickDataManagement] 跳过文件 ${file.path}: ${msg}`);
           }
         });
 

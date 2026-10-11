@@ -2,7 +2,7 @@
 
 
 export default {
-  "fns.desc": "可私有化部署，多端笔记,附件,配置实时同步&备份插件， 支持 Mac、Windows、Android、iOS 等平台，并提供 multi-language 支持。",
+  "fns.desc": "高效管理、备份与检索笔记库数据，提供高性能存储及多端支持。",
 
   "setting.tab.general": "通用",
   "setting.tab.debug": "调试",
@@ -27,13 +27,13 @@ export default {
   "setting.remote.user_account": "连接用户账号",
   "setting.remote.loading_user_info": " (正在加载用户信息...)",
   "setting.remote.setup_desc": "远端服务搭建与选择: 选择一个适合自己的远端服务",
-  "setting.remote.setup_table": "\n| 方式 | 详情参考 |\n| --- | --- |\n| 私有服务器自行搭建  |  速度好, 自由配置, 无隐私风险, 访问 <a href='https://github.com/haierkeys/obsidian-fast-note-sync-service'>https://github.com/haierkeys/fast-note-sync-service</a> 获取搭建帮助 |",
+  "setting.remote.setup_table": "\n| 方式 | 详情参考 |\n| --- | --- |\n| 私有服务器自行搭建  |  速度好, 自由配置, 无隐私风险，请参考配套服务端文档进行搭建 |",
   "setting.remote.paste_config": "粘贴服务端授权配置",
   "setting.remote.paste_success": "接口配置信息已经粘贴到设置中!",
   "setting.remote.no_config": "未检测到配置信息!",
   "setting.remote.api_url": "远端服务地址",
-  "setting.remote.api_url_desc": "输入一个 FNS 服务地址",
-  "setting.remote.api_url_placeholder": "输入您的 FNS 服务地址",
+  "setting.remote.api_url_desc": "输入一个远端服务地址",
+  "setting.remote.api_url_placeholder": "输入您的远端服务地址",
   "setting.remote.api_token": "远端授权令牌",
   "setting.remote.api_token_desc": "输入您的授权令牌",
   "setting.remote.api_token_placeholder": "输入您的 API 访问令牌",
@@ -148,7 +148,7 @@ export default {
   "setting.cloud.type_limit": "附件云预览类型限制",
   "setting.cloud.type_limit_desc": "开启后，仅限 图片/音频/视频/PDF 使用云预览功能，其他附件正常同步。\n注意：请谨慎关闭，本项可能导致附件关联插件失效。",
   "setting.cloud.remote_source": "附件云预览 - 前后缀映射远端源",
-  "setting.cloud.remote_source_desc": "该设置项用于为匹配前缀/后缀的附件指定远端源，支持多行规则。\n格式：<b>前缀名@后缀名#远端源</b>，\n<b>前缀</b>可以省略，多个<b>后缀名</b>可用 <b>$</b> 分隔，前后缀均不匹配则使用默认FNS源，远端源支持变量替换。\n\n| 变量 | 说明 |\n| --- | --- |\n| {path} | 笔记内的附件路径 |\n| {vaultPath} | 附件对应仓库的相对路径 |\n| {notePath} | 包含该附件的笔记路径 |\n| {attachmentFolderPath} | Obsidian 默认的附件存放文件夹路径 |\n| {vault} | 仓库名 |\n| {type} | 附件类型 (image/video/audio/pdf/other) |\n例如：<b>prefix@.jpg$.png#http://domain.com/{path}</b>\n注意：若使用自定义远端源，确保其支持跨域预览（CORS）及必要的鉴权（若需要）",
+  "setting.cloud.remote_source_desc": "该设置项用于为匹配前缀/后缀的附件指定远端源，支持多行规则。\n格式：<b>前缀名@后缀名#远端源</b>，\n<b>前缀</b>可以省略，多个<b>后缀名</b>可用 <b>$</b> 分隔，前后缀均不匹配则使用默认远端源，远端源支持变量替换。\n\n| 变量 | 说明 |\n| --- | --- |\n| {path} | 笔记内的附件路径 |\n| {vaultPath} | 附件对应仓库的相对路径 |\n| {notePath} | 包含该附件的笔记路径 |\n| {attachmentFolderPath} | Obsidian 默认的附件存放文件夹路径 |\n| {vault} | 仓库名 |\n| {type} | 附件类型 (image/video/audio/pdf/other) |\n例如：<b>prefix@.jpg$.png#http://domain.com/{path}</b>\n注意：若使用自定义远端源，确保其支持跨域预览（CORS）及必要的鉴权（若需要）",
   "setting.cloud.delete_after_upload": "附件云预览 - 上传后删除",
   "setting.cloud.delete_after_upload_desc": "附件成功上传后将自动删除本地文件以节省空间。\n(本设置需要开启附件云预览)\n注意：请谨慎关闭，本项可能导致附件关联插件失效。",
   "setting.cloud.dynamic_attachment": "动态附件目录",
@@ -178,7 +178,7 @@ export default {
   "setting.support.range_3m": "三个月以内",
   "setting.support.range_all": "全部至今",
   "setting.support.empty": "暂无支持记录",
-  "setting.support.thanks": "感谢大家对 Fast Note Sync 的支持,本列表会不定期更新。<br />除留言外, 还可在留言内容中添加 <b>推荐信息</b> 或 <b>反馈问题ID</b>，例如：#1234，方便快速获取帮助。",
+  "setting.support.thanks": "感谢大家对 Quick Data Management 的支持,本列表会不定期更新。<br />除留言外, 还可在留言内容中添加 <b>推荐信息</b> 或 <b>反馈问题ID</b>，例如：#1234，方便快速获取帮助。",
   "setting.support.loading": "加载中...",
   "setting.support.message_title": "支持者留言",
   "setting.support.message_label": "留言内容：",
@@ -231,7 +231,7 @@ export default {
   "ui.history.load_failed": "加载失败，请重试",
 
   // --- ui.menu ---
-  "ui.menu.ribbon_title": "FNS菜单",
+  "ui.menu.ribbon_title": "数据管理",
   "ui.menu.default_sync": "默认同步",
   "ui.menu.default_sync_desc": "检查上次同步以来的增量更新",
   "ui.menu.full_sync": "完整同步",
@@ -248,9 +248,9 @@ export default {
   "ui.menu.rebuild_hash": "重建哈希",
   "ui.menu.clear_cache": "清理同步缓存",
   "ui.menu.plugin": "插件版本",
-  "ui.menu.plugin_desc": "Fast Note Sync 插件版本号",
+  "ui.menu.plugin_desc": "Quick Data Management 插件版本号",
   "ui.menu.server": "服务端版本",
-  "ui.menu.server_desc": "Fast Note Sync 服务端 version 号",
+  "ui.menu.server_desc": "Quick Data Management 服务端版本号",
   "ui.menu.settings": "插件设置",
   "setting.debug.clear_time_desc": "清理本地所有类型的同步记录时间戳，不影响远端数据。下次同步将进行全量比对。",
   "setting.debug.clear_hash_only_desc": "仅清理本地文件哈希映射表，不触发即时重建。下次同步时将重新计算。",
@@ -569,5 +569,6 @@ export default {
   "ui.conflict.final_title": "解决冲突内容",
   "ui.conflict.use_local": "使用本地->",
   "ui.conflict.use_remote": "使用远端->",
+  "ui.conflict.diff_skipped": "文件较大，已跳过逐行差异对比。可点击上方按钮选用本地/远端版本，或在右侧编辑器直接编辑。",
   "ui.log.action.NoteManualMergeConflict": "笔记内容冲突",
 };

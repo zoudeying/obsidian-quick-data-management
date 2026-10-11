@@ -61,8 +61,10 @@ export const localeMap: { [k: string]: Partial<typeof en> } = {
 // Use a string variable first to avoid computed property name resolution warnings
 // 先用字符串变量缓存，避免静态分析无法解析计算属性名
 const _moment = moment as unknown as { locale?: () => string };
-export const getLocale = () => typeof _moment.locale === 'function' ? _moment.locale() : "en";
-const locale = (localeMap as Record<string, Partial<typeof en>>)[getLocale()] as Partial<LangMap> | undefined;
+export const getLocale = () => {
+    const loc = typeof _moment.locale === 'function' ? _moment.locale() : "en";
+    return loc ? loc.toLowerCase() : "en";
+};
 
 
 function getValueFromPath(root: Record<string, unknown>, path: string): unknown {
@@ -119,7 +121,10 @@ export function $(
     // str 的类型现在必为 string，安全用于索引
     const key = str;
     const fallback = en[key];
-    const result = (locale && (locale[key] as string)) ?? fallback ?? key;
+    const rawLoc = getLocale();
+    const loc = rawLoc ? rawLoc.toLowerCase() : "en";
+    const resolvedLocale = (localeMap[loc] || localeMap[loc.split("-")[0]] || en) as Partial<LangMap>;
+    const result = (resolvedLocale && (resolvedLocale[key] as string)) ?? fallback ?? key;
 
     if (params) {
         return interpolate(result, params);

@@ -25,7 +25,7 @@ build:
 	pnpm run build
 
 cp:
-	cp  ./main.js /Users/DevApps/@JsApps/ObsPlugins2/.obsidian/plugins/obsidian-fast-note-sync/
+	cp  ./main.js /Users/DevApps/@JsApps/ObsPlugins2/.obsidian/plugins/obsidian-quick-data-management/
 
 
 # 更新版本脚本调用

@@ -180,11 +180,11 @@ export class VersionManager {
 
         // 提取版本号部分：1.20.12-alpha -> 1.20.12
         const versionPart = latest.split('-')[0];
-        const zipFileName = `fast-note-sync-v${versionPart}.zip`;
+        const zipFileName = `obsidian-quick-data-management-v${versionPart}.zip`;
 
         const baseUrl = source === 'github'
-            ? `https://github.com/haierkeys/obsidian-fast-note-sync/releases/download/${tag}`
-            : `https://cnb.cool/haierkeys/obsidian-fast-note-sync/-/releases/download/${tag}`;
+            ? `https://github.com/zoudeying/obsidian-quick-data-management/releases/download/${tag}`
+            : `https://github.com/zoudeying/obsidian-quick-data-management/releases/download/${tag}`;
 
         const pluginDir = getPluginDir(plugin);
         dump(`Upgrade info: source=${source}, tag=${tag}, zipName=${zipFileName}, dir=${pluginDir}`);

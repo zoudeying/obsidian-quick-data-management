@@ -37,21 +37,21 @@ export class StatusBarManager {
 
     this.statusBarItem = this.plugin.addStatusBarItem();
     this.statusBarItem.addClass("fns-hidden");
-    this.statusBarItem.addClass("fast-note-sync-status-bar-progress");
+    this.statusBarItem.addClass("fns-status-bar-progress");
 
     // Create phase label (↑ / ↓) / 创建阶段标签
     this.statusBarPhaseLabel = this.statusBarItem.createSpan("fns-phase-label");
 
     // Create progress bar / 创建进度条轨道与填充
-    this.statusBarProgressBar = this.statusBarItem.createDiv("fast-note-sync-progress-bar");
-    this.statusBarFill = this.statusBarProgressBar.createDiv("fast-note-sync-progress-fill");
+    this.statusBarProgressBar = this.statusBarItem.createDiv("fns-progress-bar");
+    this.statusBarFill = this.statusBarProgressBar.createDiv("fns-progress-fill");
 
     // Create check icon / 创建完成勾号
-    this.statusBarCheck = this.statusBarItem.createSpan("fast-note-sync-progress-check fns-status-bar-check fns-hidden");
+    this.statusBarCheck = this.statusBarItem.createSpan("fns-progress-check fns-status-bar-check fns-hidden");
     setIcon(this.statusBarCheck, "check");
 
     // Create percentage or text node / 创建百分比或文本节点
-    this.statusBarPct = this.statusBarItem.createDiv("fast-note-sync-progress-text fns-progress-pct");
+    this.statusBarPct = this.statusBarItem.createDiv("fns-progress-text fns-progress-pct");
 
     // Create failed-item red dot badge, hidden until there are unresolved conflicts.
     // 创建失败项/冲突项红点，冲突数为 0 时隐藏。

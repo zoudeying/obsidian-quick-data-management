@@ -2,7 +2,7 @@
 
 
 export default {
-  "fns.desc": "프라이빗 배포가 가능한 멀티플랫폼 노트, 첨부파일, 설정 실시간 동기화 및 백업 플러그인입니다. Mac, Windows, Android, iOS 등 다양한 플랫폼을 지원하며 multi-language 를 제공합니다.",
+  "fns.desc": "노트 보관함 데이터를 효율적으로 관리, 백업 및 인덱싱하며 고성능 로컬 스토리지와 통합 기능을 제공합니다.",
 
   "setting.tab.general": "일반",
   "setting.tab.debug": "디버그",
@@ -27,13 +27,13 @@ export default {
   "setting.remote.user_account": "연결 사용자 계정",
   "setting.remote.loading_user_info": " (사용자 정보 로딩 중...)",
   "setting.remote.setup_desc": "원격 서비스 설정 및 선택: 자신에게 적합한 원격 서비스를 선택하세요",
-  "setting.remote.setup_table": "\n| 구축 방식 | 상세 참고 |\n| --- | --- |\n| 사설 서버 직접 구축  |  속도 빠름, 자유로운 설정, 개인정보 유출 위험 없음, <a href='https://github.com/haierkeys/obsidian-fast-note-sync-service'>https://github.com/haierkeys/fast-note-sync-service</a> 방문하여 구축 방법 참고 |",
+  "setting.remote.setup_table": "\n| 구축 방식 | 상세 참고 |\n| --- | --- |\n| 사설 서버 직접 구축  |  속도 빠름, 자유로운 설정, 개인정보 유출 위험 없음. 제공되는 서버 설명서를 참고하여 구축하세요 |",
   "setting.remote.paste_config": "서버 권한 설정 붙여넣기",
   "setting.remote.paste_success": "API 설정 정보가 설정에 붙여넣어졌습니다!",
   "setting.remote.no_config": "설정 정보를 감지하지 못했습니다!",
   "setting.remote.api_url": "원격 서비스 주소",
-  "setting.remote.api_url_desc": "FNS 서비스 주소 입력",
-  "setting.remote.api_url_placeholder": "FNS 서비스 주소 입력",
+  "setting.remote.api_url_desc": "원격 서비스 주소 입력",
+  "setting.remote.api_url_placeholder": "원격 서비스 주소 입력",
   "setting.remote.api_token": "원격 인증 Token",
   "setting.remote.api_token_desc": "인증 Token 입력",
   "setting.remote.api_token_placeholder": "API 접근 토큰을 입력하세요",
@@ -148,7 +148,7 @@ export default {
   "setting.cloud.type_limit": "첨부 파일 클라우드 미리보기 유형 제한",
   "setting.cloud.type_limit_desc": "활성화되면 이미지/오디오/비디오/PDF에만 클라우드 미리보기 기능이 적용되며, 기타 첨부 파일은 정상적으로 동기화됩니다.\n주의: 이 항목을 비활성화할 때는 신중하게 하세요. 첨부 파일 관련 플러그인이 작동하지 않을 수 있습니다.",
   "setting.cloud.remote_source": "첨부 파일 클라우드 미리보기 - 접두사/접미사 매핑 원격 소스",
-  "setting.cloud.remote_source_desc": "이 설정 항목은 접두사/접미사와 일치하는 첨부 파일에 대한 원격 소스를 지정하는 데 사용되며, 여러 줄 규칙을 지원합니다.\n형식: <b>접두사명@접미사명#원격 소스</b>,\n<b>접두사</b>는 생략할 수 있으며, 여러 <b>접미사명</b>은 <b>$</b>로 구분할 수 있습니다. 접두사와 접미사 모두 일치하지 않으면 기본 FNS 소스가 사용되며, 원격 소스는 변수 대체를 지원합니다.\n\n| 변수 | 설명 |\n| --- | --- |\n| {path} | 노트 내 첨부 파일 경로 |\n| {vaultPath} | 첨부 파일이 속한 저장소의 상대 경로 |\n| {notePath} | 해당 첨부 파일을 포함하는 노트 경로 |\n| {attachmentFolderPath} | Obsidian의 기본 첨부 파일 저장 폴더 경로 |\n| {vault} | 저장소 이름 |\n| {type} | 첨부 파일 유형 (image/video/audio/pdf/other) |\n예시: <b>prefix@.jpg$.png#http://domain.com/{path}</b>\n주의: 사용자 정의 원격 소스를 사용하는 경우, 해당 소스가 크로스 도메인 미리보기(CORS) 및 필요한 인증(필요한 경우)을 지원하는지 확인하십시오.",
+  "setting.cloud.remote_source_desc": "이 설정 항목은 접두사/접미사와 일치하는 첨부 파일에 대한 원격 소스를 지정하는 데 사용되며, 여러 줄 규칙을 지원합니다.\n형식: <b>접두사명@접미사명#원격 소스</b>,\n<b>접두사</b>는 생략할 수 있으며, 여러 <b>접미사명</b>은 <b>$</b>로 구분할 수 있습니다. 접두사와 접미사 모두 일치하지 않으면 기본 원격 소스가 사용되며, 원격 소스는 변수 대체를 지원합니다.\n\n| 변수 | 설명 |\n| --- | --- |\n| {path} | 노트 내 첨부 파일 경로 |\n| {vaultPath} | 첨부 파일이 속한 저장소의 상대 경로 |\n| {notePath} | 해당 첨부 파일을 포함하는 노트 경로 |\n| {attachmentFolderPath} | Obsidian의 기본 첨부 파일 저장 폴더 경로 |\n| {vault} | 저장소 이름 |\n| {type} | 첨부 파일 유형 (image/video/audio/pdf/other) |\n예시: <b>prefix@.jpg$.png#http://domain.com/{path}</b>\n주의: 사용자 정의 원격 소스를 사용하는 경우, 해당 소스가 크로스 도메인 미리보기(CORS) 및 필요한 인증(필요한 경우)을 지원하는지 확인하십시오.",
   "setting.cloud.delete_after_upload": "첨부 파일 클라우드 미리보기 - 업로드 후 삭제",
   "setting.cloud.delete_after_upload_desc": "첨부 파일이 성공적으로 업로드되면 공간을 절약하기 위해 로컬 파일이 자동으로 삭제됩니다.\n(이 설정을 사용하려면 첨부 파일 클라우드 미리보기를 활성화해야 합니다)\n주의: 이 항목을 비활성화할 때는 신중하게 하세요. 첨부 파일 관련 플러그인이 작동하지 않을 수 있습니다.",
   "setting.cloud.dynamic_attachment": "동적 첨부 파일 디렉토리",
@@ -178,7 +178,7 @@ export default {
   "setting.support.range_3m": "3개월 이내",
   "setting.support.range_all": "전체 기간",
   "setting.support.empty": "지원 기록이 없습니다",
-  "setting.support.thanks": "Fast Note Sync에 대한 여러분의 지원에 감사드립니다. 이 목록은 수시로 업데이트됩니다.<br />의견을 남기실 때, 본문에 <b>추천 사항</b> 또는 <b>피드백 문제 ID</b>를 추가해 주시면(예: #1234), 신속한 지원을 받을 수 있습니다.",
+  "setting.support.thanks": "Quick Data Management에 대한 여러분의 지원에 감사드립니다. 이 목록은 수시로 업데이트됩니다.<br />의견을 남기실 때, 본문에 <b>추천 사항</b> 또는 <b>피드백 문제 ID</b>를 추가해 주시면(예: #1234), 신속한 지원을 받을 수 있습니다.",
   "setting.support.loading": "로딩 중...",
   "setting.support.message_title": "후원자 메시지",
   "setting.support.message_label": "메시지 내용:",
@@ -231,7 +231,7 @@ export default {
   "ui.history.load_failed": "로딩 실패, 다시 시도하세요",
 
   // --- ui.menu ---
-  "ui.menu.ribbon_title": "FNS 메뉴",
+  "ui.menu.ribbon_title": "데이터 관리",
   "ui.menu.default_sync": "기본 동기화",
   "ui.menu.default_sync_desc": "마지막 동기화 이후의 증분 업데이트 확인",
   "ui.menu.full_sync": "전체 동기화",
@@ -248,9 +248,9 @@ export default {
   "ui.menu.rebuild_hash": "해시 재구성",
   "ui.menu.clear_cache": "동기화 캐시 지우기",
   "ui.menu.plugin": "플러그인 버전",
-  "ui.menu.plugin_desc": "Fast Note Sync 플러그인 버전 번호",
+  "ui.menu.plugin_desc": "Quick Data Management 플러그인 버전 번호",
   "ui.menu.server": "서버 버전",
-  "ui.menu.server_desc": "Fast Note Sync 서버 버전 번호",
+  "ui.menu.server_desc": "Quick Data Management 서버 버전 번호",
   "ui.menu.settings": "플러그인 설정",
   "setting.debug.clear_time_desc": "로컬의 모든 유형의 동기화 기록 타임스탬프를 정리합니다. 원격 데이터에는 영향을 주지 않습니다. 다음 동기화 시 전체 비교가 수행됩니다.",
   "setting.debug.clear_hash_only_desc": "로컬 파일 해시 매핑 테이블만 정리하며 즉시 재구성은 수행되지 않습니다. 다음 동기화 시 다시 계산됩니다.",
@@ -569,5 +569,6 @@ export default {
   "ui.conflict.final_title": "충돌 해결 내용",
   "ui.conflict.use_local": "로컬 사용->",
   "ui.conflict.use_remote": "원격 사용->",
+  "ui.conflict.diff_skipped": "파일 크기가 커서 한 줄씩 차이점 비교를 건너뛰었습니다. 위의 버튼을 클릭하여 로컬/원격 버전을 선택하거나 오른쪽 편집기에서 직접 편집할 수 있습니다。",
   "ui.log.action.NoteManualMergeConflict": "노트 내용 충돌",
 };

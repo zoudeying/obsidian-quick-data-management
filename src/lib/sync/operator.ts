@@ -1045,7 +1045,7 @@ export const handleSync = async function (plugin: FastSync, isLoadLastTime: bool
             plugin.scannedConfigHashes.set(path, { hash: contentHash, mtime: stat.mtime, size: stat.size });
             // 注意：hashFileAsync 内部已经带了 [Calc] 类型的 dump
           } catch (e) {
-            console.warn(`[FastNoteSync] 哈希配置失败，跳过: ${path}`, e);
+            console.warn(`[QuickDataManagement] 哈希配置失败，跳过: ${path}`, e);
             continue;
           }
         } else {
@@ -1062,7 +1062,7 @@ export const handleSync = async function (plugin: FastSync, isLoadLastTime: bool
         });
       } catch (e) {
         const errorMsg = e instanceof Error ? e.message : String(e);
-        console.warn(`[FastNoteSync] 跳过异常配置文件 ${path}: ${errorMsg}`);
+        console.warn(`[QuickDataManagement] 跳过异常配置文件 ${path}: ${errorMsg}`);
         dump(`Error processing config file ${path}:`, e);
       }
     }

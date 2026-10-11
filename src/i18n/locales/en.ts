@@ -2,7 +2,7 @@
 
 
 export default {
-  "fns.desc": "A plugin for private deployment that enables real-time sync & backup of notes, attachments, and configurations across multiple devices. Supports Mac, Windows, Android, iOS, and more, with multi-language support.",
+  "fns.desc": "A plug-in to efficiently manage, backup, and index vault data with high-performance local storage and multi-device support.",
 
   "setting.tab.general": "General",
   "setting.tab.debug": "Debug",
@@ -27,13 +27,13 @@ export default {
   "setting.remote.user_account": "Connected User Account",
   "setting.remote.loading_user_info": " (Loading user info...)",
   "setting.remote.setup_desc": "Remote Service Setup and Selection: Choose a remote service that suits your needs",
-  "setting.remote.setup_table": "\n| Method | Details |\n| --- | --- |\n| Self-hosted on Private Server |  Fast speed, fully configurable, no privacy risks. Visit <a href='https://github.com/haierkeys/obsidian-fast-note-sync-service'>https://github.com/haierkeys/fast-note-sync-service</a> for setup assistance. |",
+  "setting.remote.setup_table": "\n| Method | Details |\n| --- | --- |\n| Self-hosted on Private Server |  Fast speed, fully configurable, no privacy risks. Please refer to server documentation for deployment assistance. |",
   "setting.remote.paste_config": "Paste server authorization config",
   "setting.remote.paste_success": "Interface configuration info has been pasted into settings!",
   "setting.remote.no_config": "No configuration info detected!",
   "setting.remote.api_url": "Remote Service Address",
-  "setting.remote.api_url_desc": "Enter an FNS service address",
-  "setting.remote.api_url_placeholder": "Enter your FNS service address",
+  "setting.remote.api_url_desc": "Enter a remote service address",
+  "setting.remote.api_url_placeholder": "Enter your remote service address",
   "setting.remote.api_token": "Remote authorization token",
   "setting.remote.api_token_desc": "Enter your authorization token",
   "setting.remote.api_token_placeholder": "Enter your API access token",
@@ -148,7 +148,7 @@ export default {
   "setting.cloud.type_limit": "Attachment Cloud Preview Type Limit",
   "setting.cloud.type_limit_desc": "When enabled, only images/audio/videos/PDFs will use the cloud preview function, while other attachments will sync normally.\nNote: Please disable with caution; this may cause attachment-related plugins to fail.",
   "setting.cloud.remote_source": "Attachment Cloud Preview - Prefix/Suffix Mapping Remote Source",
-  "setting.cloud.remote_source_desc": "This setting allows you to specify a remote source for attachments matching a given prefix/suffix, supporting multi-line rules.\nFormat: <b>prefix@suffix#remote_source</b>,\n<b>prefix</b> can be omitted, multiple <b>suffixes</b> can be separated by <b>$</b>. If neither prefix nor suffix matches, the default FNS source is used. Remote sources support variable substitution.\n\n| Variable | Description |\n| --- | --- |\n| {path} | Attachment path within the note |\n| {vaultPath} | Relative path of the vault containing the attachment |\n| {notePath} | Path of the note containing the attachment |\n| {attachmentFolderPath} | Obsidian's default attachment folder path |\n| {vault} | Vault name |\n| {type} | Attachment type (image/video/audio/pdf/other) |\nExample: <b>prefix@.jpg$.png#http://domain.com/{path}</b>\nNote: If using a custom remote source, ensure it supports cross-origin preview (CORS) and necessary authentication (if required).",
+  "setting.cloud.remote_source_desc": "This setting allows you to specify a remote source for attachments matching a given prefix/suffix, supporting multi-line rules.\nFormat: <b>prefix@suffix#remote_source</b>,\n<b>prefix</b> can be omitted, multiple <b>suffixes</b> can be separated by <b>$</b>. If neither prefix nor suffix matches, the default remote source is used. Remote sources support variable substitution.\n\n| Variable | Description |\n| --- | --- |\n| {path} | Attachment path within the note |\n| {vaultPath} | Relative path of the vault containing the attachment |\n| {notePath} | Path of the note containing the attachment |\n| {attachmentFolderPath} | Obsidian's default attachment folder path |\n| {vault} | Vault name |\n| {type} | Attachment type (image/video/audio/pdf/other) |\nExample: <b>prefix@.jpg$.png#http://domain.com/{path}</b>\nNote: If using a custom remote source, ensure it supports cross-origin preview (CORS) and necessary authentication (if required).",
   "setting.cloud.delete_after_upload": "Attachment Cloud Preview - Delete After Upload",
   "setting.cloud.delete_after_upload_desc": "Local files will be automatically deleted after successful attachment upload to save space.\n(This setting requires Attachment Cloud Preview to be enabled)\nNote: Please disable with caution; this may cause attachment-related plugins to fail.",
   "setting.cloud.dynamic_attachment": "Dynamic Attachment Directory",
@@ -178,7 +178,7 @@ export default {
   "setting.support.range_3m": "Within 3 months",
   "setting.support.range_all": "All time",
   "setting.support.empty": "No support records yet",
-  "setting.support.thanks": "Thank you for your support of Fast Note Sync. This list will be updated periodically.<br />In addition to leaving a message, you can also include <b>recommendation details</b> or <b>issue IDs for feedback</b> in your message, such as #1234, to help us assist you more quickly.",
+  "setting.support.thanks": "Thank you for your support of Quick Data Management. This list will be updated periodically.<br />In addition to leaving a message, you can also include <b>recommendation details</b> or <b>issue IDs for feedback</b> in your message, such as #1234, to help us assist you more quickly.",
   "setting.support.loading": "Loading...",
   "setting.support.message_title": "Supporter Messages",
   "setting.support.message_label": "Message Content:",
@@ -231,7 +231,7 @@ export default {
   "ui.history.load_failed": "Load failed, please retry",
 
   // --- ui.menu ---
-  "ui.menu.ribbon_title": "FNS Menu",
+  "ui.menu.ribbon_title": "Data Management",
   "ui.menu.default_sync": "Default Sync",
   "ui.menu.default_sync_desc": "Check incremental updates since the last sync",
   "ui.menu.full_sync": "Full Sync",
@@ -247,10 +247,10 @@ export default {
   "ui.menu.clear_hash": "Clear Hash",
   "ui.menu.rebuild_hash": "Rebuild Hash",
   "ui.menu.clear_cache": "Clear Sync Cache",
-  "ui.menu.plugin": "Plugin Version",
-  "ui.menu.plugin_desc": "Fast Note Sync plugin version number",
+  "ui.menu.plugin": "Plug-in Version",
+  "ui.menu.plugin_desc": "Quick Data Management plug-in version number",
   "ui.menu.server": "Server Version",
-  "ui.menu.server_desc": "Fast Note Sync server version number",
+  "ui.menu.server_desc": "Quick Data Management server version number",
   "ui.menu.settings": "Plugin Settings",
   "setting.debug.clear_time_desc": "Clear local sync record timestamps for all types. Remote data is unaffected. The next sync will perform a full comparison.",
   "setting.debug.clear_hash_only_desc": "Only clears the local file hash mapping table without triggering an immediate rebuild. It will be recalculated during the next sync.",
@@ -569,5 +569,6 @@ export default {
   "ui.conflict.final_title": "Resolved Conflict Content",
   "ui.conflict.use_local": "Use Local ->",
   "ui.conflict.use_remote": "Use Remote ->",
+  "ui.conflict.diff_skipped": "File is large; line-by-line diff has been skipped. You can click the buttons above to select the local/remote version, or edit directly in the editor on the right.",
   "ui.log.action.NoteManualMergeConflict": "Note Content Conflict",
 };

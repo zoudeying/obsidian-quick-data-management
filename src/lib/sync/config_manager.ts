@@ -121,10 +121,10 @@ export class ConfigManager {
               const manifest = JSON.parse(content) as { version?: string }
               if (manifest.version && manifest.version !== this.plugin.manifest.version) {
                 (this.plugin.manifest as { version: string }).version = manifest.version
-                dump(`[FastNoteSync] Local manifest updated to ${this.plugin.manifest.version}`)
+                dump(`[QuickDataManagement] Local manifest updated to ${this.plugin.manifest.version}`)
               }
             } catch (e) {
-              dumpError("[FastNoteSync] Failed to read local manifest:", e)
+              dumpError("[QuickDataManagement] Failed to read local manifest:", e)
             }
           })();
         }, 500) // 延迟读取确保写入完成

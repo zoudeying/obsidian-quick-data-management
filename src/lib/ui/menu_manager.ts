@@ -691,7 +691,7 @@ export class MenuManager {
           const titleEl = (item as unknown as MenuItemWithInternal).titleEl;
           if (titleEl) {
             if (!titleEl.querySelector(".fns-menu-badge")) {
-              const iconSpan = titleEl.createSpan({ cls: "fast-note-sync-update-icon fns-update-icon" });
+              const iconSpan = titleEl.createSpan({ cls: "fns-update-icon" });
               setIcon(iconSpan, "circle-arrow-up");
 
               // Add red dot after text (文字后面右上红点)
@@ -725,7 +725,7 @@ export class MenuManager {
           const titleEl = (item as unknown as MenuItemWithInternal).titleEl;
           if (titleEl) {
             if (!titleEl.querySelector(".fns-menu-badge")) {
-              const iconSpan = titleEl.createSpan({ cls: "fast-note-sync-update-icon fns-update-icon fns-update-icon-sm" });
+              const iconSpan = titleEl.createSpan({ cls: "fns-update-icon fns-update-icon-sm" });
               setIcon(iconSpan, "circle-arrow-up");
 
               // Add red dot after text (文字后面右上红点)

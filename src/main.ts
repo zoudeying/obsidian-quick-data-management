@@ -355,12 +355,17 @@ export default class FastSync extends Plugin {
 
   async onload() {
     (window as Window & {
+      QuickDataManagementDebug?: {
+        dumpError: typeof dumpError;
+        checkAndNotifyCaseConflict: typeof checkAndNotifyCaseConflict;
+        DebugLogManager: typeof DebugLogManager;
+      };
       FastSyncDebug?: {
         dumpError: typeof dumpError;
         checkAndNotifyCaseConflict: typeof checkAndNotifyCaseConflict;
         DebugLogManager: typeof DebugLogManager;
       };
-    }).FastSyncDebug = {
+    }).QuickDataManagementDebug = (window as unknown as { FastSyncDebug?: unknown }).FastSyncDebug = {
       dumpError,
       checkAndNotifyCaseConflict,
       DebugLogManager
@@ -410,64 +415,68 @@ export default class FastSync extends Plugin {
 
 
     // 注册协议处理器 (核心功能)
-    const ssoAction = "fast-note-sync/sso";
-    try {
-      this.registerObsidianProtocolHandler(ssoAction, async (data: Record<string, string>) => {
-        if (data?.pushApi) {
-          const getDomainOrHost = (urlStr: string): string => {
-            if (!urlStr) return "";
-            try {
-              let formattedUrl = urlStr.trim();
-              if (!/^[a-zA-Z]+:\/\//.test(formattedUrl)) {
-                formattedUrl = "http://" + formattedUrl;
-              }
-              return new URL(formattedUrl).hostname || "";
-            } catch {
-              let host = urlStr.trim();
-              host = host.replace(/^(https?:\/\/|wss?:\/\/)/i, "");
-              return host.split("/")[0].split(":")[0] || "";
+    const ssoHandler = async (data: Record<string, string>) => {
+      if (data?.pushApi) {
+        const getDomainOrHost = (urlStr: string): string => {
+          if (!urlStr) return "";
+          try {
+            let formattedUrl = urlStr.trim();
+            if (!/^[a-zA-Z]+:\/\//.test(formattedUrl)) {
+              formattedUrl = "http://" + formattedUrl;
             }
-          };
+            return new URL(formattedUrl).hostname || "";
+          } catch {
+            let host = urlStr.trim();
+            host = host.replace(/^(https?:\/\/|wss?:\/\/)/i, "");
+            return host.split("/")[0].split(":")[0] || "";
+          }
+        };
 
-          const currentApi = (this.settings.api || "").trim();
-          const currentToken = (this.settings.apiToken || "").trim();
-          const isCurrentEmpty = !currentApi && !currentToken;
+        const currentApi = (this.settings.api || "").trim();
+        const currentToken = (this.settings.apiToken || "").trim();
+        const isCurrentEmpty = !currentApi && !currentToken;
 
-          const importApi = (data.pushApi || "").trim();
-          const isSameOrSameDomain = !!currentApi && (
-            currentApi === importApi ||
-            getDomainOrHost(currentApi) === getDomainOrHost(importApi)
-          );
+        const importApi = (data.pushApi || "").trim();
+        const isSameOrSameDomain = !!currentApi && (
+          currentApi === importApi ||
+          getDomainOrHost(currentApi) === getDomainOrHost(importApi)
+        );
 
-          const isHighRisk = !(isCurrentEmpty || isSameOrSameDomain);
+        const isHighRisk = !(isCurrentEmpty || isSameOrSameDomain);
 
-          new SsoImportModal(
-            this.app,
-            {
-              pushApi: data.pushApi,
-              pushApiToken: data.pushApiToken,
-              pushVault: data.pushVault,
-            },
-            () => {
-              void (async () => {
-                this.settings.api = data.pushApi;
-                this.settings.apiToken = data.pushApiToken;
-                if (data?.pushVault) {
-                  this.settings.vault = data.pushVault;
-                }
-                this.wsSettingChange = true;
-                this.localStorageManager.clearSyncTime();
-                await this.saveSettings();
-                showSyncNotice($("ui.status.config_imported"), 5000);
-                void this.reloadServices();
-              })();
-            },
-            isHighRisk
-          ).open();
-        }
-      });
-    } catch (e) {
-      console.warn(`Fast Note Sync: Protocol handler ${ssoAction} registration skipped or already exists. / 协议处理器注册跳过或已存在:`, e);
+        new SsoImportModal(
+          this.app,
+          {
+            pushApi: data.pushApi,
+            pushApiToken: data.pushApiToken,
+            pushVault: data.pushVault,
+          },
+          () => {
+            void (async () => {
+              this.settings.api = data.pushApi;
+              this.settings.apiToken = data.pushApiToken;
+              if (data?.pushVault) {
+                this.settings.vault = data.pushVault;
+              }
+              this.wsSettingChange = true;
+              this.localStorageManager.clearSyncTime();
+              await this.saveSettings();
+              showSyncNotice($("ui.status.config_imported"), 5000);
+              void this.reloadServices();
+            })();
+          },
+          isHighRisk
+        ).open();
+      }
+    };
+
+    const ssoActions = ["obsidian-quick-data-management/sso", "fast-note-sync/sso"];
+    for (const action of ssoActions) {
+      try {
+        this.registerObsidianProtocolHandler(action, ssoHandler);
+      } catch (e) {
+        console.warn(`Quick Data Management: Protocol handler ${action} registration skipped or already exists:`, e);
+      }
     }
 
     // 提前创建 MenuManager 并初始化 ribbon，必须在 onLayoutReady 之前完成，
@@ -923,7 +932,7 @@ export default class FastSync extends Plugin {
         this.api?.probeApiRedirect().then(() => {
           runRegister();
         }).catch(e => {
-          dumpError("Fast Note Sync: Background API probe failed", e)
+          dumpError("[QuickDataManagement] Background API probe failed", e)
         })
       } else {
         runRegister();

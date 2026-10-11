@@ -618,13 +618,13 @@ export const logMemorySnapshot = function (label: string): void {
   if (logLevel === "off") return
   const memory = (performance as unknown as { memory?: { usedJSHeapSize: number; totalJSHeapSize: number; jsHeapSizeLimit: number } }).memory
   if (memory) {
-    dump("[FastNoteSync][Memory]", label, {
+    dump("[QuickDataManagement][Memory]", label, {
       used: formatFileSize(memory.usedJSHeapSize),
       total: formatFileSize(memory.totalJSHeapSize),
       limit: formatFileSize(memory.jsHeapSizeLimit),
     })
   } else {
-    dump("[FastNoteSync][Memory]", label)
+    dump("[QuickDataManagement][Memory]", label)
   }
 }
 

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { KofiImage, WXImage } from "src/lib/utils/helpers_image";
+import { KofiImage } from "src/lib/utils/helpers_image";
 import { createPortal } from "react-dom";
 import { dump } from "src/lib/utils/helpers";
 import { setIcon } from "obsidian";
@@ -281,10 +281,7 @@ const SupportList = ({ plugin }: { plugin: FastSync }) => {
     };
     const fileName = fileNameMap[locale] || "Support.en.md";
 
-    const baseUrl = source === "cnb"
-      ? "https://cnb.cool/haierkeys/fast-note-sync-service/-/blob/master/docs/"
-      : "https://github.com/haierkeys/fast-note-sync-service/blob/master/docs/";
-
+    const baseUrl = "https://github.com/zoudeying/obsidian-quick-data-management/blob/master/docs/";
     return baseUrl + fileName;
   };
 
@@ -507,22 +504,9 @@ export const SupportView = ({ plugin }: { plugin: FastSync }) => {
             <span className="fns-support-card-title">{$("setting.support.kofi")}</span>
           </div>
           <div className="fns-support-card-body">
-            <a href="https://ko-fi.com/haierkeys" target="_blank" rel="noreferrer" className="fns-support-link">
+            <a href="https://ko-fi.com/zoudeying" target="_blank" rel="noreferrer" className="fns-support-link">
               <img src={KofiImage} className="fns-support-img-kofi" alt="Ko-fi" />
             </a>
-          </div>
-        </div>
-
-        {/* WeChat Pay Card */}
-        <div className="fns-support-card fns-wechat-card">
-          <div className="fns-support-card-header">
-            <span className="fns-support-card-icon">🧧</span>
-            <span className="fns-support-card-title">{$("setting.support.wechat")}</span>
-          </div>
-          <div className="fns-support-card-body">
-            <div className="fns-wechat-qr-wrapper">
-              <img src={WXImage} className="fns-support-img-wechat" alt="WeChat Pay" />
-            </div>
           </div>
         </div>
       </div>

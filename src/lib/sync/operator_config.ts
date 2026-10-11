@@ -213,7 +213,7 @@ export const receiveConfigSyncModify = async function (data: ReceiveMessage, plu
         }
 
         if (hasPendingLocalEdit || hasDivergedSinceLastSync) {
-            dump(`[FastSync] Skip config overwrite, local unsynced edit detected: ${filePath}`)
+            dump(`[QuickDataManagement] Skip config overwrite, local unsynced edit detected: ${filePath}`)
             SyncLogManager.getInstance().addLog('receive', 'ConfigModifyConflict', `本地配置存在未同步的改动，跳过服务端覆盖，等待下一轮同步处理冲突: ${filePath}`, 'cancelled', data.path)
             plugin.removeIgnoredConfigFile(data.path)
             plugin.recordSyncCompleted('setting', data.pageIndex)
@@ -752,12 +752,12 @@ export const configReload = async function (path: string, plugin: FastSync, even
                         plugin.configManager.enabledPlugins = new Set(newP)
                     }
                     for (const id of toE) {
-                        if (id != "hot-reload" && id != "fast-note-sync") {
+                        if (id != "hot-reload" && id != "fast-note-sync" && id != (plugin.manifest?.id || "obsidian-quick-data-management")) {
                             pluginsToReload.add(id)
                         }
                     }
                     for (const id of toD) {
-                        if (id != "hot-reload" && id != "fast-note-sync") await app.plugins.disablePlugin(id)
+                        if (id != "hot-reload" && id != "fast-note-sync" && id != (plugin.manifest?.id || "obsidian-quick-data-management")) await app.plugins.disablePlugin(id)
                     }
                 } catch { /* ignore */ }
             } else if (p === `${configDir}/hotkeys.json`) {
@@ -775,10 +775,9 @@ export const configReload = async function (path: string, plugin: FastSync, even
         }
 
         // 统一处理插件重载
-        // 将 fast-note-sync 移到最后处理，确保其他插件先重载
-        // Process fast-note-sync last to ensure other plugins reload first
+        // 将本插件移到最后处理，确保其他插件先重载
         const sortedPlugins = Array.from(pluginsToReload);
-        const selfId = "fast-note-sync";
+        const selfId = plugin.manifest?.id || "obsidian-quick-data-management";
         if (sortedPlugins.includes(selfId)) {
             const index = sortedPlugins.indexOf(selfId);
             sortedPlugins.splice(index, 1);
@@ -796,7 +795,7 @@ export const configReload = async function (path: string, plugin: FastSync, even
             // 否则（例如仅 data.json 更新），跳过重载以免影响插件运行
             if (id === selfId) {
                 if (hasMainJsUpdate || hasManifestUpdate) {
-                    dump(`[FastNoteSync] Detected critical update for self, triggering reload.`);
+                    dump(`[QuickDataManagement] Detected critical update for self, triggering reload.`);
                     plugin.websocket.unRegister();
                     // Fall through to reload logic
                 } else {

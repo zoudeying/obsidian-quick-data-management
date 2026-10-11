@@ -186,7 +186,7 @@ export const receiveFolderSyncModify = async function (data: { path: string, mti
             }
         }, { maxRetries: 5, retryInterval: 100 });
     } catch (e) {
-        dumpError(`[FastSync] Failed to receiveFolderSyncModify: ${normalizedPath}`, e);
+        dumpError(`[QuickDataManagement] Failed to receiveFolderSyncModify: ${normalizedPath}`, e);
         if (!checkAndNotifyCaseConflict(e, data.path, plugin, 'FolderModify')) {
             SyncLogManager.getInstance().addLog('receive', 'FolderModify', e instanceof Error ? e.message : String(e), 'error', data.path);
         }
@@ -227,7 +227,7 @@ export const receiveFolderSyncDelete = async function (data: { path: string, las
                         // 避免强制递归删除误删用户数据；等待下一轮同步重新判定
                         // Folder still non-empty after timeout (e.g. pending downloads or new user files);
                         // skip the delete instead of force-recursing, wait for next sync round
-                        dump(`[FastSync] Folder not empty after wait, skip delete: ${normalizedPath}`);
+                        dump(`[QuickDataManagement] Folder not empty after wait, skip delete: ${normalizedPath}`);
                         SyncLogManager.getInstance().addLog('receive', 'FolderDeleteSkipped', `目录非空，跳过删除，等待下轮同步: ${normalizedPath}`, 'cancelled', data.path);
                         return
                     }
@@ -244,7 +244,7 @@ export const receiveFolderSyncDelete = async function (data: { path: string, las
             }
         }, { maxRetries: 10, retryInterval: 200 });
     } catch (e) {
-        dumpError(`[FastSync] Failed to receiveFolderSyncDelete: ${normalizedPath}`, e);
+        dumpError(`[QuickDataManagement] Failed to receiveFolderSyncDelete: ${normalizedPath}`, e);
         SyncLogManager.getInstance().addLog('receive', 'FolderDelete', e instanceof Error ? e.message : String(e), 'error', data.path);
         plugin.folderSyncTasks.failed++
     } finally {
@@ -313,7 +313,7 @@ export const receiveFolderSyncRename = async function (data: FolderSyncRenameMes
             }
         }, { maxRetries: 10, retryInterval: 100 });
     } catch (e) {
-        dumpError(`[FastSync] Failed to receiveFolderSyncRename: ${normalizedOldPath} -> ${normalizedNewPath}`, e);
+        dumpError(`[QuickDataManagement] Failed to receiveFolderSyncRename: ${normalizedOldPath} -> ${normalizedNewPath}`, e);
         if (!checkAndNotifyCaseConflict(e, data.path, plugin, 'FolderRename')) {
             SyncLogManager.getInstance().addLog('receive', 'FolderRename', e instanceof Error ? e.message : String(e), 'error', data.path);
         }

@@ -255,7 +255,7 @@ export const receiveNoteSyncModify = async function (data: ReceiveMessage, plugi
           }
 
           if (hasPendingLocalEdit || hasDivergedSinceLastSync || plugin.syncState.conflictedPaths.has(normalizedPath)) {
-            dump(`[FastSync] Skip overwrite, local unsynced edit detected: ${normalizedPath}`)
+            dump(`[QuickDataManagement] Skip overwrite, local unsynced edit detected: ${normalizedPath}`)
 
             // 如果存在未同步的本地修改或已在冲突列表中，将服务端最新推送的内容写入/更新到远端备份文件 xxx.remote.md
             // If local unsynced edit exists or path is in conflict state, write/update the server's latest content into xxx.remote.md
@@ -280,9 +280,9 @@ export const receiveNoteSyncModify = async function (data: ReceiveMessage, plugi
                 await adapter.write(baseBackupPath, localContent);
               }
 
-              dump(`[FastSync] Updated remote backup file for conflict: ${remoteBackupPath}`);
+              dump(`[QuickDataManagement] Updated remote backup file for conflict: ${remoteBackupPath}`);
             } catch (err) {
-              dumpError(`[FastSync] Failed to update remote backup file: ${normalizedPath}`, err);
+              dumpError(`[QuickDataManagement] Failed to update remote backup file: ${normalizedPath}`, err);
             }
 
             // 保持在冲突列表中并刷新状态栏
@@ -336,7 +336,7 @@ export const receiveNoteSyncModify = async function (data: ReceiveMessage, plugi
       }
     }, { maxRetries: 5, retryInterval: 100 });
   } catch (e) {
-    dumpError(`[FastSync] Failed to receiveNoteSyncModify: ${normalizedPath}`, e);
+    dumpError(`[QuickDataManagement] Failed to receiveNoteSyncModify: ${normalizedPath}`, e);
     if (!checkAndNotifyCaseConflict(e, data.path, plugin, 'NoteModify')) {
       SyncLogManager.getInstance().addLog('receive', 'NoteModify', e instanceof Error ? e.message : String(e), 'error', data.path);
     }
@@ -457,7 +457,7 @@ export const receiveNoteSyncMtime = async function (data: ReceiveMtimeMessage, p
       }
     }, { maxRetries: 5, retryInterval: 100 });
   } catch (e) {
-    dumpError(`[FastSync] Failed to receiveNoteSyncMtime: ${normalizedPath}`, e);
+    dumpError(`[QuickDataManagement] Failed to receiveNoteSyncMtime: ${normalizedPath}`, e);
     if (!checkAndNotifyCaseConflict(e, data.path, plugin, 'NoteMtime')) {
       SyncLogManager.getInstance().addLog('receive', 'NoteMtime', e instanceof Error ? e.message : String(e), 'error', data.path);
     }
@@ -509,7 +509,7 @@ export const receiveNoteSyncDelete = async function (data: ReceiveMessage, plugi
       }
     }, { maxRetries: 5, retryInterval: 100 });
   } catch (e) {
-    dumpError(`[FastSync] Failed to receiveNoteSyncDelete: ${normalizedPath}`, e);
+    dumpError(`[QuickDataManagement] Failed to receiveNoteSyncDelete: ${normalizedPath}`, e);
     SyncLogManager.getInstance().addLog('receive', 'NoteDelete', e instanceof Error ? e.message : String(e), 'error', data.path);
     plugin.noteSyncTasks.failed++
   } finally {
@@ -628,7 +628,7 @@ export const receiveNoteSyncRename = async function (data: { path: string, oldPa
       }
     }, { maxRetries: 10, retryInterval: 100 });
   } catch (e) {
-    dumpError(`[FastSync] Failed to receiveNoteSyncRename: ${normalizedOldPath} -> ${normalizedNewPath}`, e);
+    dumpError(`[QuickDataManagement] Failed to receiveNoteSyncRename: ${normalizedOldPath} -> ${normalizedNewPath}`, e);
     if (!checkAndNotifyCaseConflict(e, data.path, plugin, 'NoteRename')) {
       SyncLogManager.getInstance().addLog('receive', 'NoteRename', e instanceof Error ? e.message : String(e), 'error', data.path);
     }
